@@ -19,6 +19,7 @@
     0. Check installed compiler version (gcc -v should be > 9.0), if not install it
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
+    3. install editor (I suggest Visual Studio Code)
 
 ## install audio plugin development framework
 
@@ -30,9 +31,20 @@ e.g. AudioDev
 
 Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
 
+
+## Test the toolchain so far
+    From JUCE REadme.md
+    cd /path/to/JUCE
+    cmake . -B cmake-build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
+    cmake --build cmake-build --target DemoRunner
+    cmake --build cmake-build --target AudioPluginHost
+    cmake --build cmake-build --target Projucer
+
+
+
 ## Find a plugin host
 
-1. You can Build the pluginhost from JUCE
+1. You can build the pluginhost from JUCE (or did it already in the test)
 2. Find other suitable hosts:
     * Windows: 
         * Reaper (cost 60$)
