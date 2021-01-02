@@ -40,8 +40,24 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
     cmake --build cmake-build --target AudioPluginHost
     cmake --build cmake-build --target Projucer
 
+## Setup JUCE for CMAKE globally (see "/home/bitzer/AudioDev/JUCE/docs/CMake API.md")
+Bsp hier
+    Go to JUCE directory
+    cd /path/to/clone/JUCE
+    
+    * Linux:
+    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/home/bitzer/AudioDev/JUCE/install/
+    cmake --build cmake-build-install --target install
 
+    * Windows:
 
+    * Apple:
+    
+
+## Test mit der Kopie von examples AudioPlugin
+
+cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
+cmake --build build
 ## Find a plugin host
 
 1. You can build the pluginhost from JUCE (or did it already in the test)

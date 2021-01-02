@@ -2,21 +2,20 @@
 
 ### Vorbereitung
 
-1. GitHUb Projekt für DemoProjekt (copy von JUCE Example)
+1. Done : GitHUb Projekt für DemoProjekt (copy von JUCE Example)
 2. Vernünftigen VST3 Host unter Linux finden (Native LinuxVST3) (Reaper??)
-3. CMAKE und Juce6 (via Git) auf allen PLattformen installieren
-4. Kompilieren mit CMAKE unter allen drei PLattformen 
-    * Linux
+3. Kompilieren mit CMAKE unter allen drei PLattformen 
+    * Linux (Done)
     * Win
     * MacOS
-5. Test mit internen Juce Tools (PLugInTester)
+4. Test mit internen Juce Tools (PLugInTester)
 
 
 ### Lernen bez CMAKE 
 1. Wie kopiert man die fertige dll zu einem fixen Ordner, damit man mit einem anderen Host testen kann
-2. Wie inkludiert man Resourcen (BItmaps)
+2. Wie inkludiert man Resourcen (BItmaps) : Laut JUCE CMake API geht dass einfach
 
-### Lernen bez AudioDev
+### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
 1. FactoryPresets mit XML und Resourceneinbindung 
 2. Presets unter Linux / MacOS 
 
