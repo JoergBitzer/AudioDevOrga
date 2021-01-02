@@ -1,7 +1,5 @@
 ## Todo Liste fuer Audio Dev
 
-Test Test from apple
-
 ### Vorbereitung
 
 1. GitHUb Projekt für DemoProjekt (copy von JUCE Example)
