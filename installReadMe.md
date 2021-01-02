@@ -54,7 +54,10 @@ Bsp hier
     cmake --build cmake-build-install --target install
 
     * Apple:
-    
+    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/Users/bitzer/AudioDev/JUCE/install
+    cmake --build cmake-build-install --target install
+   
+    /Users/bitzer/AudioDev/JUCE/install
 
 ## Test mit der Kopie von examples AudioPlugin
 
@@ -67,6 +70,10 @@ cmake --build build
 
 * Windows
 cmake -B build -DCMAKE_PREFIX_PATH=C:/AudioDevNew/JUCE/install
+cmake --build build
+
+* Apple
+cmake -B build -DCMAKE_PREFIX_PATH=/Users/bitzer/AudioDev/JUCE/install
 cmake --build build
 
 
