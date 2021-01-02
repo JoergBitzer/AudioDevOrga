@@ -50,14 +50,24 @@ Bsp hier
     cmake --build cmake-build-install --target install
 
     * Windows:
+    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=C:/AudioDevNew/JUCE/install
+    cmake --build cmake-build-install --target install
 
     * Apple:
     
 
 ## Test mit der Kopie von examples AudioPlugin
 
+* Linux
 cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
 cmake --build build
+
+* Windows
+cmake -B build -DCMAKE_PREFIX_PATH=C:/AudioDevNew/JUCE/install
+cmake --build build
+
+
+
 ## Find a plugin host
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
