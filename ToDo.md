@@ -6,9 +6,10 @@
 2. Vernünftigen VST3 Host unter Linux finden (Native LinuxVST3) (Reaper??)
 3. Kompilieren mit CMAKE unter allen drei PLattformen 
     * Linux (Done)
-    * Win
+    * Win (Done)
     * MacOS
-4. Test mit internen Juce Tools (PLugInTester)
+4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen)
+5. Test mit internen Juce Tools (PLugInTester)
 
 
 ### Lernen bez CMAKE 
