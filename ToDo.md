@@ -7,7 +7,7 @@
 3. Kompilieren mit CMAKE unter allen drei PLattformen 
     * Linux (Done)
     * Win (Done)
-    * MacOS
+    * MacOS (Done)
 4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen)
 5. Test mit internen Juce Tools (PLugInTester)
 
