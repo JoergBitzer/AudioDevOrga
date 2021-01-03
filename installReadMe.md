@@ -6,24 +6,26 @@
     0. Install compiler (I would use Visual Studio 2019)
     1. Install git (use gitbash)
     2. Install CMAKE (dont forget to select option use PATH for alle users)
+    3. Install Editor (Visual Studio works on all plattforms)
 
 * Apple:
     0. Install compiler (I would use Xcode)
     1. Install git (if not installed)
     2. Install CMAKE (dont forget to add the path to terminal, e.g 
     ```console 
-    ```
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
+    ```
+    3. Install Editor (Visual Studio works on all plattforms)
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not install it
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
-    3. install editor (I suggest Visual Studio Code)
+    3. Install Editor (Visual Studio works on all plattforms)
 
 ## install audio plugin development framework
 
-Several plattform independent frameworks are available
+Several plattform independent frameworks are available (JUCE, IPlug, VSTGUI)
 I would use JUCE (www.juce.com)
 
 To prevent to many files cluttering around, start with e new subdirectory
@@ -40,46 +42,59 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
     cmake --build cmake-build --target AudioPluginHost
     cmake --build cmake-build --target Projucer
 
-## Setup JUCE for CMAKE globally (see "/home/bitzer/AudioDev/JUCE/docs/CMake API.md")
+## Alternative 1: Setup JUCE for CMAKE globally (see "/home/bitzer/AudioDev/JUCE/docs/CMake API.md")
 Bsp hier
     Go to JUCE directory
     cd /path/to/clone/JUCE
     
     * Linux:
+    ```console 
     cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/home/bitzer/AudioDev/JUCE/install/
     cmake --build cmake-build-install --target install
-
+    ```
     * Windows:
+    ```console 
     cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=C:/AudioDevNew/JUCE/install
     cmake --build cmake-build-install --target install
-
+    ```
     * Apple:
+    ```console 
     cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/Users/bitzer/AudioDev/JUCE/install
     cmake --build cmake-build-install --target install
-   
-    /Users/bitzer/AudioDev/JUCE/install
+    ```
+
+## Alternative 2 (recommended): Use AudioDev Directory as SuperProject for all Audio Dev (this seems the better way)
+    1. Copy CMakeList.txt from this git projekt to the AudioDev Directory
 
 ## Test mit der Kopie von examples AudioPlugin
+ Clone https://github.com/JoergBitzer/CrossPlugInTest
 
-Fuer Dbug und Release muss hinter dem zweiten cmake ein --config Debug/Release
+* Using Alternative 1:
+    * Linux:
+        cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
+        cmake --build build
+    * Windows:
+        cmake -B build -DCMAKE_PREFIX_PATH=C:/AudioDevNew/JUCE/install
+        cmake --build build
+    * Apple:
+        cmake -B build -DCMAKE_PREFIX_PATH=/Users/bitzer/AudioDev/JUCE/install
+        cmake --build build
+
+* Using Alternative 2 (recommended):
+    1. Change the CMakeListFile.txt by using the alternative File AltMakeLists.txt
+    2. Change CMakeFile.txt in dthe AudioDev Directory by adding 
+    ```console 
+    add_subdirectory(CrossPlugInTest)                  
+    ```
 
 
-* Linux
-cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
-cmake --build build
+## Additinal things
 
-* Windows
-cmake -B build -DCMAKE_PREFIX_PATH=C:/AudioDevNew/JUCE/install
-cmake --build build
+### Debug Release Builds
+   
+To choose between Debug und Release add in the cmake command cmake ein --config Debug/Release
 
-* Apple
-cmake -B build -DCMAKE_PREFIX_PATH=/Users/bitzer/AudioDev/JUCE/install
-cmake --build build
-
-
-
-
-## Find a plugin host
+### Find a plugin host
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
 2. Find other suitable hosts:
@@ -91,16 +106,18 @@ cmake --build build
     * Apple:
         * Reaper (cost 60$)
 
+### plattform independent code
+check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
+
+CMAKE_SYSTEM 
+Windows   Windows (Visual Studio, MinGW GCC)
+Darwin    macOS/OS X (Clang, GCC)
+Linux     Linux (GCC, Intel, PGI)
 
 
-
-
-
-
-
-## copy the vst to the right directory
+### copy the vst to the right directory
 
 * Linux: home/.vst/
-* Windows: prgram Files/VST (???)
-* Apple: ???
+* Windows: C:\Program Files\Common Files\VST3 ; (32 Bit, obsolete) C:\Program Files (x86)\Common Files\VST3
+* Apple: Macintosh HD > Library > Audio > Plug-Ins > VST3
 

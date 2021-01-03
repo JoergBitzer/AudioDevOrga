@@ -8,12 +8,13 @@
     * Linux (Done)
     * Win (Done)
     * MacOS (Done)
-4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen)
-5. Test mit internen Juce Tools (PLugInTester)
+4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen) (more or less done)
+5. Test mit internen Juce Tools (PLugInTester) (Done for Linux)
 
 
 ### Lernen bez CMAKE 
 1. Wie kopiert man die fertige dll zu einem fixen Ordner, damit man mit einem anderen Host testen kann
+ Test mit /home/bitzer/AudioDev/PlugIns/
 2. Wie inkludiert man Resourcen (BItmaps) : Laut JUCE CMake API geht dass einfach
 
 ### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
