@@ -94,6 +94,10 @@ Bsp hier
 
 ## Additinal things
 
+### Access rights for the final copy step
+
+in Windows the console (for cmake) needs Admin rights 
+
 ### Debug Release Builds
    
 To choose between Debug und Release add in the cmake command cmake ein --config Debug/Release
@@ -113,6 +117,9 @@ To choose between Debug und Release add in the cmake command cmake ein --config 
 ### plattform independent code
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
 
+und ENDIF()
+
+
 CMAKE_SYSTEM 
 Windows   Windows (Visual Studio, MinGW GCC)
 Darwin    macOS/OS X (Clang, GCC)
@@ -123,5 +130,6 @@ Linux     Linux (GCC, Intel, PGI)
 
 * Linux: home/.vst/
 * Windows: C:\Program Files\Common Files\VST3 ; (32 Bit, obsolete) C:\Program Files (x86)\Common Files\VST3
-* Apple: Macintosh HD > Library > Audio > Plug-Ins > VST3
+* Apple (VST3): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > VST3
+* Apple (AU): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > Components
 

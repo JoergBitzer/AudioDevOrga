@@ -13,8 +13,8 @@
 
 
 ### Lernen bez CMAKE 
-1. Wie kopiert man die fertige dll zu einem fixen Ordner, damit man mit einem anderen Host testen kann
- Test mit /home/bitzer/AudioDev/PlugIns/
+1. Done Wie kopiert man die fertige dll zu einem fixen Ordner, damit man mit einem anderen Host testen kann
+ Test mit /home/bitzer/AudioDev/PlugIns/ VST3 hat festen Ordner somit DONE
 2. Wie inkludiert man Resourcen (BItmaps) : Laut JUCE CMake API geht dass einfach
 
 ### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
