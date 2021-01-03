@@ -86,7 +86,11 @@ Bsp hier
     ```console 
     add_subdirectory(CrossPlugInTest)                  
     ```
-
+    3. Build the SuperProject
+    ```console 
+    cmake -B build
+    cmake --build build
+    ```
 
 ## Additinal things
 

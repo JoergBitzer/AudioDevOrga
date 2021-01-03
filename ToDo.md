@@ -9,7 +9,7 @@
     * Win (Done)
     * MacOS (Done)
 4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen) (more or less done)
-5. Test mit internen Juce Tools (PLugInTester) (Done for Linux)
+5. Test mit internen Juce Tools (PLugInTester) (Done for Linux, Windows)
 
 
 ### Lernen bez CMAKE 
