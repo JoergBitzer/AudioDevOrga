@@ -139,3 +139,7 @@ Linux     Linux (GCC, Intel, PGI)
  https://docs.juce.com/master/tutorial_app_plugin_packaging.html
 
  
+ ## How to have preprocessor defines 
+
+ https://cmake.org/cmake/help/latest/command/add_compile_definitions.html#command:add_compile_definitions
+
