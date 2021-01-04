@@ -55,6 +55,15 @@ target_include_directories(tuning-workbench-synth
 1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
 2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
 
+### Mehr zu CMAKE
+https://mirkokiefer.com/cmake-by-example-f95eb47d45b1
+
+präprozessor definitions
+https://cmake.org/cmake/help/latest/command/add_compile_definitions.html#command:add_compile_definitions
+
+
+
+### Sonstige Ergänzungen
 
 Moegliche sinnvolle Erweiterungen
     JUCE_DISPLAY_SPLASH_SCREEN=0
