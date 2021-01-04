@@ -133,13 +133,3 @@ Linux     Linux (GCC, Intel, PGI)
 * Apple (VST3): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > VST3
 * Apple (AU): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > Components
 
-### How to build installer
-
-??? CPack??
- https://docs.juce.com/master/tutorial_app_plugin_packaging.html
-
- 
- ## How to have preprocessor defines 
-
- https://cmake.org/cmake/help/latest/command/add_compile_definitions.html#command:add_compile_definitions
-
