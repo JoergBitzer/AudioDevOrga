@@ -91,6 +91,45 @@ Bsp hier
     cmake -B build
     cmake --build build
     ```
+## Prepare Visual Studio Code
+
+### add Tools/Extensions
+cpptools (basic language supports for C++ development)
+CMake (CMake language supports)
+CMake Tools (Advanced Integration for using CMake in VScode with GUI)
+CodeLLDB (better debugger than built-in gdb)
+
+
+### Change Settings 
+Look for files.watcherExclude und add
+**/JUCE/** 
+
+und ähnliches, dass sich VSCOde nicht ansehen soll (Sonst überwacht VSC zu viele Dateien)
+
+Debugging
+Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermöglich die StandAlone VErsionen zu öffnen.
+```console
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "PluginHost",
+            "program": "/home/bitzer/AudioDev/JUCE/cmake-build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "CMaKe Debug",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+```
+
+
 
 ## Additinal things
 

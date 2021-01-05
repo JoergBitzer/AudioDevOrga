@@ -9,7 +9,7 @@
     * Win (Done)
     * MacOS (Done)
 4. Erweitern mit Kopie zu einem anderen Ort (alle Plattformen) (more or less done)
-5. Test mit internen Juce Tools (PLugInTester) (Done for Linux, Windows)
+5. Test mit internen Juce Tools (PLugInTester) (Done for Linux, Windows, Apple)
 
 
 ### Lernen bez CMAKE 
@@ -50,8 +50,8 @@ target_include_directories(tuning-workbench-synth
 2. Presets unter Linux / MacOS 
 
 ### Lernen Entwicklung unter Linux
-1. Wie debugging?
-2. Workflow allgemein mit VisualCode
+1. Wie debugging? (Done, easy mit CmakeTools und lldb)
+2. Workflow allgemein mit VisualCode (Done, easy mit CMakeTools)
 
 ### Projekte
 1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
