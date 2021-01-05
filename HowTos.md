@@ -37,7 +37,7 @@ from https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x
 #elif defined(_POSIX_VERSION)
     // POSIX
 #else
-#   error "Unknown compiler"
+    #error "Unknown compiler"
 #endif
 
 
