@@ -140,7 +140,34 @@ Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermög
         }
     ]
 ```
+* Windows:
 
+```console
+    "configurations": [
+        {
+            "name": "Debug VS",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false
+        },
+ 
+        {
+            "name": "PluginHost Debug VS",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:/AudioDevNew/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false
+        },
+```     
 
 
 ## Additinal things
