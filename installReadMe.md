@@ -97,7 +97,7 @@ Bsp hier
 cpptools (basic language supports for C++ development)
 CMake (CMake language supports)
 CMake Tools (Advanced Integration for using CMake in VScode with GUI)
-CodeLLDB (better debugger than built-in gdb)
+CodeLLDB (better debugger than built-in gdb) (nur für Linux und Apple)
 
 
 ### Change Settings 
@@ -174,11 +174,15 @@ Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermög
 
 ### Access rights for the final copy step
 
-in Windows the console (for cmake) needs Admin rights 
+in Windows the console (for cmake) needs Admin rights. 
+In Windows Visual STudio Code needs Admin rights for the same reason if cmake is used in VS.
 
 ### Debug Release Builds
    
-To choose between Debug und Release add in the cmake command cmake ein --config Debug/Release
+To choose between Debug und Release add in the cmake command cmake ein --config Debug/Release (Bisher nur Windows)
+
+in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
+
 
 ### Find a plugin host
 
