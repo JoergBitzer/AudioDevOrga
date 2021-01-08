@@ -76,7 +76,7 @@ Bsp hier
 ## Test mit der Kopie von examples AudioPlugin
  Clone https://github.com/JoergBitzer/CrossPlugInTest
 
-* Using Alternative 1:
+* Using Alternative 1: (with the right directories for your system)
     * Linux:
         cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
         cmake --build build
@@ -89,7 +89,7 @@ Bsp hier
 
 * Using Alternative 2 (recommended):
     1. Change the CMakeListFile.txt by using the alternative File AltMakeLists.txt
-    2. Change CMakeFile.txt in dthe AudioDev Directory by adding 
+    2. Change CMakeFile.txt in the AudioDev Directory by adding 
     ```console 
     add_subdirectory(CrossPlugInTest)                  
     ```
@@ -111,29 +111,30 @@ CodeLLDB (better debugger than built-in gdb) (nur für Linux und Apple)
 
 
 Ansehen von
-https://github.com/tomoyanonymous/juce_cmake_vscode_example
+https://github.com/tomoyanonymous/juce_cmake_vscode_example und die Apple Sachen übernehmen
 
 Apple: 
 (Vorsicht zsh ist nicht Standard console bei visual Studio. Das muss man ändern)
 Install Xcode and type xcode-select --install in terminal. open ~/.zshrc and add export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" in the last line of the file.
 
+#### unklar ob das notwendig ist
 export CPLUS_INCLUDE_PATH=/Applications/Xcode11.7.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 
 
-Look for files.watcherExclude und add
+Look for files.watcherExclude und add (scheinbar nur Linux Problem)
 **/JUCE/** 
 
 und ähnliches, dass sich VSCOde nicht ansehen soll (Sonst überwacht VSC zu viele Dateien)
 
 Debugging
-Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermöglich die StandAlone Versionen zu öffnen.
+Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release ist der Pfad anders), das zweite ermöglich die StandAlone Versionen zu öffnen, wenn diese als Target iin cmake gesetzt wird (rechte Maustaste im cmake menu).
 ```console
     "configurations": [
         {
             "type": "lldb",
             "request": "launch",
             "name": "PluginHost",
-            "program": "/home/bitzer/AudioDev/JUCE/cmake-build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost",
+            "program": "/home/bitzer/AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost",
             "args": [],
             "cwd": "${workspaceFolder}"
         },
@@ -203,23 +204,38 @@ in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Relea
     * Apple:
         * Reaper (cost 60$)
 
-### plattform independent code
+### plattform dependent code in cmake
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
 
 und ENDIF()
 
 
-CMAKE_SYSTEM 
+possible CMAKE_SYSTEM Werte
 Windows   Windows (Visual Studio, MinGW GCC)
 Darwin    macOS/OS X (Clang, GCC)
 Linux     Linux (GCC, Intel, PGI)
 
 
-### copy the vst to the right directory
+### copy the plugin to the right directory 
 
 * Linux: home/.vst/
 * Windows: C:\Program Files\Common Files\VST3 ; (32 Bit, obsolete) C:\Program Files (x86)\Common Files\VST3
 * Apple (VST3): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > VST3
 * Apple (AU): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > Components
 
-### cmake richtig zum laufen bringen + debugging
+Kann in den CMakeLists.txt in den JUCE Settings automatisiert werden 
+in juce_add_plugin add (Achtung unter Windows erfordert das Admin Rechte (Konsole oder Visual Code))
+COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
+
+Verhindern von Splash Screen Made by Juce und Nutzung der Daten
+
+in target_compile_definitions
+
+JUCE_DISPLAY_SPLASH_SCREEN=0
+JUCE_REPORT_APP_USAGE=0
+  
+
+
+
+
+
