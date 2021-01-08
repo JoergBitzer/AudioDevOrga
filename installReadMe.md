@@ -37,10 +37,17 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
 ## Test the toolchain so far
     From JUCE REadme.md
     cd /path/to/JUCE
-    cmake . -B cmake-build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
-    cmake --build cmake-build --target DemoRunner
-    cmake --build cmake-build --target AudioPluginHost
-    cmake --build cmake-build --target Projucer
+    * Debug Versions
+    cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON 
+    cmake --build build --target DemoRunner
+    cmake --build build --target AudioPluginHost
+    cmake --build build --target Projucer
+    * Release
+    cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON -DCMAKE_BUILD_TYPE:STRING=Release
+    cmake --build build --target DemoRunner
+    cmake --build build --target AudioPluginHost
+    cmake --build build --target Projucer
+
 
 ## Alternative 1: Setup JUCE for CMAKE globally (see "/home/bitzer/AudioDev/JUCE/docs/CMake API.md")
 Bsp hier
