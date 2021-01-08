@@ -101,13 +101,25 @@ CodeLLDB (better debugger than built-in gdb)
 
 
 ### Change Settings 
+
+
+Ansehen von
+https://github.com/tomoyanonymous/juce_cmake_vscode_example
+
+Apple: 
+(Vorsicht zsh ist nicht Standard console bei visual Studio. Das muss man ändern)
+Install Xcode and type xcode-select --install in terminal. open ~/.zshrc and add export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" in the last line of the file.
+
+export CPLUS_INCLUDE_PATH=/Applications/Xcode11.7.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+
+
 Look for files.watcherExclude und add
 **/JUCE/** 
 
 und ähnliches, dass sich VSCOde nicht ansehen soll (Sonst überwacht VSC zu viele Dateien)
 
 Debugging
-Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermöglich die StandAlone VErsionen zu öffnen.
+Add in launch.json. Das erste muss zum AudioPlugINHOst leiten, das zweite ermöglich die StandAlone Versionen zu öffnen.
 ```console
     "configurations": [
         {
@@ -172,3 +184,4 @@ Linux     Linux (GCC, Intel, PGI)
 * Apple (VST3): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > VST3
 * Apple (AU): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > Components
 
+### cmake richtig zum laufen bringen + debugging
