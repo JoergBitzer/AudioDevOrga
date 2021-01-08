@@ -59,4 +59,5 @@ target_include_directories(tuning-workbench-synth
 2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
 
 ### Git Subprojects lernen
-
+EIgen https://gitlab.com/libeigen/eigen
+git@gitlab.com:libeigen/eigen.git 
