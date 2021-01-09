@@ -54,7 +54,9 @@ target_include_directories(tuning-workbench-synth
 2. Workflow allgemein mit VisualCode (Done, easy mit CMakeTools)
 
 ### Projekte
-0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib))
+0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done für Linus. Andere Plattformen testen)
+1. Alten Code reinigen. Filtarbor aufhübschen (Font Problem, Koennte ein Problem für PLattformübergreifenden Code sein.)
+
 1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
 2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
 
