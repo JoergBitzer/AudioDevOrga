@@ -61,3 +61,26 @@ target_include_directories(tuning-workbench-synth
 ### Git Subprojects lernen
 EIgen https://gitlab.com/libeigen/eigen
 git@gitlab.com:libeigen/eigen.git 
+
+Wie funktionieren in git submodule. Notwendig, um die gesamte Entwicklngsumgebung richtig zu konfigurieren
+
+### Static Libs for DSP only Code
+
+
+# Tell CMake to add a static library target
+add_library(TGMTools_lib STATIC)
+# Add sources to the target
+target_sources(TGMTools_lib PRIVATE
+    Libs/TGMTools/FreeOrderLowHighpassFilter.cpp
+    Libs/TGMTools/GeneralIR.cpp
+    Libs/TGMTools/JadeLookAndFeel.cpp) # etc.
+# Tell CMake where our library's headers are located
+#target_include_directories(TGMTools_lib PUBLIC
+#Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
+
+set_target_properties(TGMTools_lib PROPERTIES
+    POSITION_INDEPENDENT_CODE TRUE
+    VISIBILITY_INLINES_HIDDEN TRUE
+    C_VISIBILITY_PRESET hidden
+    CXX_VISIBILITY_PRESET hidden)
+

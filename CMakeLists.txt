@@ -39,7 +39,12 @@ option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 
+# uncomment to add support for the TGM Library (e.g. used in Filtarbor)
+# include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
+# file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+
 # Add your projects
 add_subdirectory(CrossPlugInTest)                  
-
+# add_subdirectory(DebugAudioWriter)
+# add_subdirectory(Filtarbor)
 

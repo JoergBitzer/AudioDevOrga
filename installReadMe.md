@@ -235,7 +235,38 @@ JUCE_DISPLAY_SPLASH_SCREEN=0
 JUCE_REPORT_APP_USAGE=0
   
 
+## TGM Dev Specific
 
+### Add Eigen in a subdirectory Libs
+
+git clone https://gitlab.com/libeigen/eigen.git
+
+git clone TGMTools
+
+
+## Final directory Structure
+
+AudioDev
+    | AudioDevOrga
+    | CrossPlugInTest
+    | JUCE
+    | Libs
+    | ----| Eigen
+    | ----| TGMTools
+    CMakeLists.txt
+
+All new plugins have their own sub_dir
+example would be DebugAudioWriter
+
+AudioDev
+    | AudioDevOrga
+    | CrossPlugInTest
+    | DebugAudioWriter
+    | JUCE
+    | Libs
+    | ----| eigen
+    | ----| TGMTools
+    CMakeLists.txt
 
 
 
