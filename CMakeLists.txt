@@ -31,15 +31,19 @@ project(REPOSTART VERSION 0.0.1)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 
-#set any of these to "ON" if you want to build one of the juce examples
-#or extras (Projucer/AudioPluginHost, etc):
-option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
-option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
-
-
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
+include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
+
+
+file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+
+# if you have access zo the vst2.4 sdk (and the license from Steinberg)
+# set the path for JUCE
+# juce_set_vst2_sdk_path(Libs/vstsdk2.4)
+# and add in juce_add_plugin( FORMATS VST ) there should be VST3 AU and Standalone
 
 # Add your projects
-add_subdirectory(CrossPlugInTest)                  
-
+# add_subdirectory(CrossPlugInTest)                  
+# add_subdirectory(DebugAudioWriter)
+add_subdirectory(Filtarbor)
 
