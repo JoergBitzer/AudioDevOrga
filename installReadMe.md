@@ -177,6 +177,27 @@ Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release i
         },
 ```     
 
+* Apple (its just the .app for the AudioPluginHost)
+```console
+   "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "PluginHost",
+            "program": "/Users/bitzer/AudioDev/JUCE/cmake-build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost.app",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "CMaKe Debug",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ] 
+```
 
 ## Additinal things
 
@@ -203,6 +224,11 @@ in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Relea
         * Reaper (cost 60$)
     * Apple:
         * Reaper (cost 60$)
+
+For effects find a nice Synth as Source
+Free and very good: https://surge-synthesizer.github.io
+and for all plattforms (including Linux)
+
 
 ### plattform dependent code in cmake
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
