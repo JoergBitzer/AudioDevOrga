@@ -79,3 +79,6 @@ Moegliche sinnvolle Erweiterungen
     https://github.com/sudara/pamplejuce
 
 
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include
+
