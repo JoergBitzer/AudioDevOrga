@@ -31,12 +31,6 @@ project(REPOSTART VERSION 0.0.1)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 
-#set any of these to "ON" if you want to build one of the juce examples
-#or extras (Projucer/AudioPluginHost, etc):
-option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
-option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
-
-
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
 
