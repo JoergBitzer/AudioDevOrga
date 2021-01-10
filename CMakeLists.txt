@@ -38,13 +38,18 @@ option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
 
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
+include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
 
-# uncomment to add support for the TGM Library (e.g. used in Filtarbor)
-# include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
-# file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+
+file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+
+# if you have access zo the vst2.4 sdk (and the license from Steinberg)
+# set the path for JUCE
+# juce_set_vst2_sdk_path(Libs/vstsdk2.4)
+# and add in juce_add_plugin( FORMATS VST ) there should be VST3 AU and Standalone
 
 # Add your projects
-add_subdirectory(CrossPlugInTest)                  
+# add_subdirectory(CrossPlugInTest)                  
 # add_subdirectory(DebugAudioWriter)
-# add_subdirectory(Filtarbor)
+add_subdirectory(Filtarbor)
 
