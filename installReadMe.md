@@ -1,12 +1,16 @@
-# Plugin Development with CMAKE for all plattforms (install help)
+# Plugin (VST/AU with JUCE) Development with CMAKE for all plattforms (install help)
 
-## installing the basic tools
+## Requirements: 
+1. Basic understanding of git (clone, staging, commit etc) and cmake (what is cmake?)
+2. Some knowledge in C++ or at least Java for OOP concepts
+
+## install the basic tools
 
 * Windows:
-    0. Install compiler (I would use Visual Studio 2019)
+    0. Install compiler (I would use Visual Studio 2019 the free version is OK)
     1. Install git (use gitbash)
-    2. Install CMAKE (dont forget to select option use PATH for alle users)
-    3. Install Editor (Visual Studio works on all plattforms)
+    2. Install CMAKE (dont forget to select option use/change PATH for alle users)
+    3. Install Editor (Visual Studio Code works on all plattforms)
 
 * Apple:
     0. Install compiler (I would use Xcode)
@@ -15,18 +19,18 @@
     ```console 
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
     ```
-    3. Install Editor (Visual Studio works on all plattforms)
+    3. Install Editor (Visual Studio Code works on all plattforms)
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not install it
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
-    3. Install Editor (Visual Studio works on all plattforms)
+    3. Install Editor (Visual Studio Code works on all plattforms)
 
 ## install audio plugin development framework
 
 Several plattform independent frameworks are available (JUCE, IPlug, VSTGUI)
-I would use JUCE (www.juce.com)
+Only JUCE (www.juce.com) is described here. 
 
 To prevent to many files cluttering around, start with e new subdirectory
 e.g. AudioDev 
@@ -49,55 +53,24 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
     cmake --build build --target Projucer
 
 
-## Alternative 1: Setup JUCE for CMAKE globally (see "/home/bitzer/AudioDev/JUCE/docs/CMake API.md")
-Bsp hier
-    Go to JUCE directory
-    cd /path/to/clone/JUCE
-    
-    * Linux:
-    ```console 
-    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/home/bitzer/AudioDev/JUCE/install/
-    cmake --build cmake-build-install --target install
-    ```
-    * Windows:
-    ```console 
-    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=C:/AudioDevNew/JUCE/install
-    cmake --build cmake-build-install --target install
-    ```
-    * Apple:
-    ```console 
-    cmake -B cmake-build-install -DCMAKE_INSTALL_PREFIX=/Users/bitzer/AudioDev/JUCE/install
-    cmake --build cmake-build-install --target install
-    ```
-
-## Alternative 2 (recommended): Use AudioDev Directory as SuperProject for all Audio Dev (this seems the better way)
+##  Use AudioDev Directory as SuperProject for all Audio Dev (this seems the better way)
     1. Copy CMakeList.txt from this git projekt to the AudioDev Directory
 
-## Test mit der Kopie von examples AudioPlugin
- Clone https://github.com/JoergBitzer/CrossPlugInTest
+## Test with an example
+Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 
-* Using Alternative 1: (with the right directories for your system)
-    * Linux:
-        cmake -B build -DCMAKE_PREFIX_PATH=/home/bitzer/AudioDev/JUCE/install/
-        cmake --build build
-    * Windows:
-        cmake -B build -DCMAKE_PREFIX_PATH=C:/AudioDevNew/JUCE/install
-        cmake --build build
-    * Apple:
-        cmake -B build -DCMAKE_PREFIX_PATH=/Users/bitzer/AudioDev/JUCE/install
-        cmake --build build
-
-* Using Alternative 2 (recommended):
-    1. Change the CMakeListFile.txt by using the alternative File AltMakeLists.txt
-    2. Change CMakeFile.txt in the AudioDev Directory by adding 
+    1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
     ```console 
     add_subdirectory(CrossPlugInTest)                  
     ```
-    3. Build the SuperProject
+    2. Build the SuperProject
     ```console 
     cmake -B build
     cmake --build build
     ```
+    3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
+
+
 ## Prepare Visual Studio Code
 
 ### add Tools/Extensions
@@ -109,25 +82,37 @@ CodeLLDB (better debugger than built-in gdb) (nur für Linux und Apple)
 
 ### Change Settings 
 
+Look at for some tips (especially for Apple users)
 
-Ansehen von
 https://github.com/tomoyanonymous/juce_cmake_vscode_example und die Apple Sachen übernehmen
 
-Apple: 
-(Vorsicht zsh ist nicht Standard console bei visual Studio. Das muss man ändern)
-Install Xcode and type xcode-select --install in terminal. open ~/.zshrc and add export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" in the last line of the file.
+* Apple: 
+Be careful if bash or zsh is your default console in VS (usually its is bash). change in settings for zsh
 
-#### unklar ob das notwendig ist
-export CPLUS_INCLUDE_PATH=/Applications/Xcode11.7.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+After install Xcode and type xcode-select --install and in terminal. open ~/.zshrc and add export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" in the last line of the file.
 
+* Apple (still unclear for me, it works now without, but I changed and rechanged a lot):
+At some point it seems cmake needs a special hint where to find the OSX specifics (which is at SDKROOT)
+You cn set the CMAKE_OSX_??? = $SDKROOT
 
-Look for files.watcherExclude und add (scheinbar nur Linux Problem)
-**/JUCE/** 
+* Linux:
+increase file watchers
+1) look how the stting is
+cat /proc/sys/fs/inotify/max_user_watches
+2a) change settings
+sudo vim /etc/sysctl.conf
+add at last line 
+fs.inotify.max_user_watches=131072
+2b) start the service again
+sudo sysctl -p
 
-und ähnliches, dass sich VSCOde nicht ansehen soll (Sonst überwacht VSC zu viele Dateien)
+#### Debugging in VS 
+Add in launch.json two debug entries:
+    1. one points to the the generated standaloe plugin
+    2. one points to the AudioPluginHost (so you need to find your build in the build a.artefacts directories)
 
-Debugging
-Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release ist der Pfad anders), das zweite ermöglich die StandAlone Versionen zu öffnen, wenn diese als Target iin cmake gesetzt wird (rechte Maustaste im cmake menu).
+Examples:
+* linux:
 ```console
     "configurations": [
         {
@@ -148,7 +133,7 @@ Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release i
         }
     ]
 ```
-* Windows:
+* Windows (Use the Visual studio debugger, LLDB is not working with the debug code from VS compiler):
 
 ```console
     "configurations": [
@@ -177,7 +162,7 @@ Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release i
         },
 ```     
 
-* Apple (its just the .app for the AudioPluginHost)
+* Apple (add just the .app for the AudioPluginHost)
 ```console
    "configurations": [
         {
@@ -201,17 +186,10 @@ Add in launch.json. Das erste muss zum AudioPlugInHost leiten (Achtung Release i
 
 ## Additinal things
 
-### Access rights for the final copy step
-
-in Windows the console (for cmake) needs Admin rights. 
-In Windows Visual STudio Code needs Admin rights for the same reason if cmake is used in VS.
 
 ### Debug Release Builds
    
-To choose between Debug und Release add in the cmake command cmake ein --config Debug/Release (Bisher nur Windows)
-
 in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
-
 
 ### Find a plugin host
 
@@ -225,16 +203,15 @@ in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Relea
     * Apple:
         * Reaper (cost 60$)
 
-For effects find a nice Synth as Source
-Free and very good: https://surge-synthesizer.github.io
-and for all plattforms (including Linux)
+3. For effects find a nice Synth as Source
+        Free and very good: https://surge-synthesizer.github.io     
+        and for all plattforms (including Linux)
 
 
-### plattform dependent code in cmake
+### plattform dependent code in cmake (usually not necessary)
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
 
-und ENDIF()
-
+and ENDIF()
 
 possible CMAKE_SYSTEM Werte
 Windows   Windows (Visual Studio, MinGW GCC)
@@ -249,11 +226,20 @@ Linux     Linux (GCC, Intel, PGI)
 * Apple (VST3): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > VST3
 * Apple (AU): Macintosh HD > Users->UserName->Library > Audio > Plug-Ins > Components
 
-Kann in den CMakeLists.txt in den JUCE Settings automatisiert werden 
-in juce_add_plugin add (Achtung unter Windows erfordert das Admin Rechte (Konsole oder Visual Code))
+this step can be automated by using the JUCE settings (CMakeLists.txt of the plugin) in
+juce_add_plugin add 
 COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
 
-Verhindern von Splash Screen Made by Juce und Nutzung der Daten
+This flag is already set in most examples
+
+#### Access rights for the final copy step (Windows only)
+
+in Windows the console (for cmake) needs Admin rights. 
+In Windows Visual STudio Code needs Admin rights for the same reason if cmake is used in VS.
+
+
+
+### Prevent the splash screen (see license, if you are allowed to do this)
 
 in target_compile_definitions
 
@@ -267,10 +253,17 @@ JUCE_REPORT_APP_USAGE=0
 
 git clone https://gitlab.com/libeigen/eigen.git
 
-git clone TGMTools
+### Add TGM Tools (some common files e-g dsp code or LookAndFeel)
+
+git clone git@github.com:JoergBitzer/TGMTools.git
 
 
 ## Final directory Structure
+
+after you cloned two example projects in AudioDev directory (good for testing)
+
+git clone git@github.com:JoergBitzer/Filtarbor.git
+git clone git@github.com:JoergBitzer/DebugAudioWriter.git
 
 AudioDev
     | AudioDevOrga
