@@ -1,5 +1,41 @@
 ## Todo Liste fuer Audio Dev
 
+Aktuell:
+
+### TGMTools hübsch machen (werden ja public)
+
+### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
+1. FactoryPresets mit XML und Resourceneinbindung 
+2. Presets unter Linux / MacOS 
+3. Presets Versionierung. Wie geht man mit alten Presets um? Umwandlung auf neue FEature?
+
+### Lernen. Wie inkludiert man Resourcen (BItmaps / oder xml Files für Factory Presets) : Laut JUCE CMake API geht dass einfach
+
+### Projekte
+0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
+1. Alten Code reinigen. Filtarbor aufhübschen (Font Problem, Koennte ein Problem für PLattformübergreifenden Code sein. Done)
+
+1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
+2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
+
+
+# Ab hier alte Sachen und unklar
+
+
+von https://github.com/baconpaul/tuning-workbench-synth/blob/master/CMakeLists.txt
+
+file(GLOB TWS_RESOURCES_GLOB
+  Resources/*.ttf 
+  Resources/*.png 
+  Resources/*.svg
+  Resources/factory_patches/*.twsxml
+  )
+
+juce_add_binary_data( tuning-workbench-synth-binary
+  SOURCES ${TWS_RESOURCES_GLOB}
+)
+
+
 ### Vorbereitung
 
 1. Done : GitHUb Projekt für DemoProjekt (copy von JUCE Example)
@@ -36,7 +72,9 @@ juce_add_binary_data( tuning-workbench-synth-binary
   SOURCES ${TWS_RESOURCES_GLOB}
 )
 
-3. Wie bindet man andere Libs ein (Eigen und eigene Common Libs)
+3. Wie bindet man andere Libs ein (Eigen und eigene Common Libs) (DONE)
+
+Alternativ für jedes Plugin so
 
 target_include_directories(tuning-workbench-synth 
   PRIVATE
@@ -45,20 +83,11 @@ target_include_directories(tuning-workbench-synth
 )
 
 
-### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
-1. FactoryPresets mit XML und Resourceneinbindung 
-2. Presets unter Linux / MacOS 
 
 ### Lernen Entwicklung unter Linux
 1. Wie debugging? (Done, easy mit CmakeTools und lldb)
 2. Workflow allgemein mit VisualCode (Done, easy mit CMakeTools)
 
-### Projekte
-0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done für Linus. Andere Plattformen testen)
-1. Alten Code reinigen. Filtarbor aufhübschen (Font Problem, Koennte ein Problem für PLattformübergreifenden Code sein.)
-
-1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
-2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
 
 ### Git Subprojects lernen
 EIgen https://gitlab.com/libeigen/eigen
@@ -67,7 +96,6 @@ git@gitlab.com:libeigen/eigen.git
 Wie funktionieren in git submodule. Notwendig, um die gesamte Entwicklngsumgebung richtig zu konfigurieren
 
 ### Static Libs for DSP only Code
-
 
 * Tell CMake to add a static library target
 add_library(TGMTools_lib STATIC)
