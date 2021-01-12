@@ -82,6 +82,8 @@ CodeLLDB (better debugger than built-in gdb) (nur für Linux und Apple)
 
 ### Change Settings 
 
+* change to C++17 in cpp setting crtl+SHift+P cppsettings json
+
 Look at for some tips (especially for Apple users)
 
 https://github.com/tomoyanonymous/juce_cmake_vscode_example und die Apple Sachen übernehmen
