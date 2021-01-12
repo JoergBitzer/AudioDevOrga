@@ -77,7 +77,8 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 cpptools (basic language supports for C++ development)
 CMake (CMake language supports)
 CMake Tools (Advanced Integration for using CMake in VScode with GUI)
-CodeLLDB (better debugger than built-in gdb) (nur für Linux und Apple)
+* Apple: 
+    CodeLLDB (better debugger than built-in gdb) (nur für Apple)
 
 
 ### Change Settings 
@@ -116,24 +117,52 @@ Add in launch.json two debug entries:
 Examples:
 * linux:
 ```console
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
     "configurations": [
         {
-            "type": "lldb",
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
             "request": "launch",
-            "name": "PluginHost",
-            "program": "/home/bitzer/AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost",
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "CMaKe Debug",
             "program": "${command:cmake.launchTargetPath}",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Launch PLuginHost",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/bitzer/AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         }
     ]
+}
 ```
 * Windows (Use the Visual studio debugger, LLDB is not working with the debug code from VS compiler):
 
