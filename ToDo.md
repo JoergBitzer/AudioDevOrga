@@ -5,11 +5,9 @@ Aktuell:
 ### TGMTools hübsch machen (werden ja public)
 
 ### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
-1. FactoryPresets mit XML und Resourceneinbindung 
+1. Done : FactoryPresets mit XML und Resourceneinbindung 
 2. Presets unter Linux / MacOS 
 3. Presets Versionierung. Wie geht man mit alten Presets um? Umwandlung auf neue FEature?
-
-### Lernen. Wie inkludiert man Resourcen (BItmaps / oder xml Files für Factory Presets) : Laut JUCE CMake API geht dass einfach
 
 ### Projekte
 0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
