@@ -6,7 +6,7 @@ Aktuell:
 
 ### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
 1. Done : FactoryPresets mit XML und Resourceneinbindung 
-2. Presets unter Linux / MacOS 
+2. Done : Presets unter Linux / MacOS 
 3. Presets Versionierung. Wie geht man mit alten Presets um? Umwandlung auf neue FEature?
 
 ### Projekte
