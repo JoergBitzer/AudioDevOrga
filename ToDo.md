@@ -4,10 +4,11 @@ Aktuell:
 
 ### TGMTools hübsch machen (werden ja public)
 
-### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
-1. Done : FactoryPresets mit XML und Resourceneinbindung 
-2. Done : Presets unter Linux / MacOS 
-3. Presets Versionierung. Wie geht man mit alten Presets um? Umwandlung auf neue FEature?
+### Templates erstellen
+1 Parameter und PresetHandler , Übernahme letzte Einstellungen usw. 
+2 Im GUI Bereich 
+
+### Lernen wie resizable PlugIns gehen.
 
 ### Projekte
 0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
@@ -16,6 +17,14 @@ Aktuell:
 1. Projekt zPlane Viever fertig stellen (als Übungsprojekt)
 2. Projekt EQ Synth starten (HIer über konstante Videoaufzeichnung nachdenken)
 
+### Lernen bez AudioDev (Weiterentwicklung PresetHandler)
+1. Done : FactoryPresets mit XML und Resourceneinbindung 
+2. Done : Presets unter Linux / MacOS 
+3. Presets Versionierung. Wie geht man mit alten Presets um? Umwandlung auf neue FEature?
+
+### Documentation anfangen
+1. Wie funktionieren Presets (als Anleitung für Nutzer)
+2. Wie funktioniert der PResetHandler für Entwickler?
 
 # Ab hier alte Sachen und unklar
 
@@ -114,3 +123,14 @@ target_sources(TGMTools_lib PRIVATE
 
 ### How to include other copps files
 https://www.reddit.com/r/cpp_questions/comments/8rn41i/cmake_include_file_from_different_folder_without/e0swsoh/
+
+
+### Installer 
+Welche Installer funktionieren auf welchem System? 
+Wie bereitet man die vor (CPack)? 
+* Windows: NSIS? 
+* Linux: Shell Command Install (Linux)
+* Apple: 
+
+
+

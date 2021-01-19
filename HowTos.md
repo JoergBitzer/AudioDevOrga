@@ -1,3 +1,16 @@
+
+
+
+
+
+### Plugins with Presets
+
+
+
+### Resizable Plugins
+
+
+
 ### How to build installer
 
 ??? CPack??
