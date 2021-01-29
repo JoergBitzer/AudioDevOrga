@@ -31,6 +31,8 @@ project(REPOSTART VERSION 0.0.1)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 
+#add_compile_definitions(FACTORY_PRESETS) # use this if you want to use xml factory presets
+
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
 
@@ -45,5 +47,7 @@ file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
 # Add your projects
 # add_subdirectory(CrossPlugInTest)                  
 # add_subdirectory(DebugAudioWriter)
-add_subdirectory(Filtarbor)
+# add_subdirectory(Filtarbor)
+add_subdirectory(AudioDevTemplate)
+
 

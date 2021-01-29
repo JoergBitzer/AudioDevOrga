@@ -9,6 +9,7 @@ Aktuell:
 2 Im GUI Bereich 
 
 ### Lernen wie resizable PlugIns gehen.
+Besipiel aus Juce mal auf dem Filtarbor ausprobieren.
 
 ### Projekte
 0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
@@ -92,7 +93,7 @@ target_include_directories(tuning-workbench-synth
 
 
 ### Lernen Entwicklung unter Linux
-1. Wie debugging? (Done, easy mit CmakeTools und lldb)
+1. Wie debugging? (Done, easy mit CmakeTools und den debuggern)
 2. Workflow allgemein mit VisualCode (Done, easy mit CMakeTools)
 
 
@@ -130,7 +131,7 @@ Welche Installer funktionieren auf welchem System?
 Wie bereitet man die vor (CPack)? 
 * Windows: NSIS? 
 * Linux: Shell Command Install (Linux)
-* Apple: 
+* Apple: https://medium.com/swlh/the-easiest-way-to-build-macos-installer-for-your-application-34a11dd08744
 
 
 
