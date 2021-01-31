@@ -15,6 +15,7 @@ cmake_minimum_required(VERSION 3.15)
 # directories, and the current project version. This is a standard CMake command.
 
 project(REPOSTART VERSION 0.0.1)
+set(CMAKE_CXX_STANDARD 17)
 
 #if build fail, uncomment these lines 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
@@ -31,10 +32,12 @@ project(REPOSTART VERSION 0.0.1)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 
-#add_compile_definitions(FACTORY_PRESETS) # use this if you want to use xml factory presets
+#add_compile_definitions(FACTORY_PRESETS)
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
-include_directories(Libs/eigen;Libs/eigen/unsupported;Libs/TGMTools)
+include_directories(Libs/TGMTools)
+# this is for the eigen library (https://gitlab.com/libeigen/eigen)
+include_directories(Libs/eigen;Libs/eigen/unsupported)
 
 
 file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
@@ -48,6 +51,5 @@ file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
 # add_subdirectory(CrossPlugInTest)                  
 # add_subdirectory(DebugAudioWriter)
 # add_subdirectory(Filtarbor)
-add_subdirectory(AudioDevTemplate)
-
-
+# add_subdirectory(AudioDevTemplate)
+add_subdirectory(EQoder)
