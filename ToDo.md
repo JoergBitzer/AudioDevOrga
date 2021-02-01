@@ -8,9 +8,6 @@ Aktuell:
 1 Parameter und PresetHandler , Übernahme letzte Einstellungen usw. 
 2 Im GUI Bereich 
 
-### Lernen wie resizable PlugIns gehen.
-Besipiel aus Juce mal auf dem Filtarbor ausprobieren.
-
 ### Projekte
 0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
 1. Alten Code reinigen. Filtarbor aufhübschen (Font Problem, Koennte ein Problem für PLattformübergreifenden Code sein. Done)
