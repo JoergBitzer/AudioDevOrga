@@ -4,9 +4,13 @@ Aktuell:
 
 ### TGMTools hübsch machen (werden ja public)
 
+### JUCE
+1) AudioBlock und und AudioBlock Prozessor helper
+2) Kann man das auch so einfach in einem Main TEster testen reich include <JuceHEader>
+
+
 ### Templates erstellen
-1 Parameter und PresetHandler , Übernahme letzte Einstellungen usw. 
-2 Im GUI Bereich 
+
 
 ### Projekte
 0. Alte Projekte zum laufen bringen (Filtarbor wegen eigen und JadeLookAndFeel (Also Frembibliothek und unserer eigenen Lib)) (Filtarbor Done) Chorus als nächstes
