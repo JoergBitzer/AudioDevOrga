@@ -52,11 +52,15 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
 
+    if you have time just 
+    cmake --build build
 
 ##  Use AudioDev Directory as SuperProject for all Audio Dev (this seems the better way)
     1. Copy CMakeList.txt from this git projekt to the AudioDev Directory
 
 ## Test with an example
+(You have to add the Libs dir first look at TGM Dev Specific below)
+
 Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 
     1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
@@ -68,6 +72,7 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
     cmake -B build
     cmake --build build
     ```
+    or use the cmake tools given in VS Code
     3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
 
 
