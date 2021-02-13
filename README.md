@@ -1,10 +1,22 @@
 # AudioDevOrga
-This repository is the starting point to learn plugin development with JUCE
+This repository is the starting point to learn plugin development with JUCE.
+It is still subject to change and in a developing phase
+
+So far:
+1. the installation process for the toolchain is described
+2. a template is provided (resizable and with a preset handler)
+3. several examples are provided
+
+Missing:
+1. a tutorial, how to start a new plugin
+2. improved HowTo.md
+
 
 # Start
 
 1. make a new directory (I would recommend just below home or c:/d: ). I usually use AudioDev
 2. cd into this directory and clone this repository
+3. read ``installReadMe.md``
 
 # Requirements to learn plugin development
 
