@@ -43,50 +43,57 @@ AudioDev
 
 
 ## Test the toolchain so far
-    From JUCE REadme.md
+
+From JUCE REadme.md
     cd /path/to/JUCE
-    * Debug Versions
+* Debug Versions
+```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON 
     cmake --build build --target DemoRunner
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
-    * Release
+```
+
+* Release
+```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON -DCMAKE_BUILD_TYPE:STRING=Release
     cmake --build build --target DemoRunner
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
-
-    if you have time (I would recommend that, it takes 1-2h based on your system) just 
+```
+if you have time (I would recommend that, it takes 1-2h based on your system) just 
+```console 
     cmake --build build
+```
 
 ##  Use AudioDev Directory as SuperProject for all Audio Dev 
-    1. Copy CMakeList.txt from this git projekt to the AudioDev Directory
+
+Copy CMakeList.txt from this git projekt to the AudioDev Directory
 
 ## Test the toolchain so far with an example
 
 Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 
-    1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
-    ```console 
-    add_subdirectory(CrossPlugInTest)                  
-    ```
-    2. Build the SuperProject
-    ```console 
+1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
+```console 
+   add_subdirectory(CrossPlugInTest)                  
+```
+2. Build the SuperProject or use the cmake tools given in VS Code
+```console 
     cmake -B build
     cmake --build build
-    ```
-    or use the cmake tools given in VS Code
-    3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
+```
+3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
 
 
 ## Prepare Visual Studio Code
 
 ### add Tools/Extensions
-cpptools (basic language supports for C++ development)
-CMake (CMake language supports)
-CMake Tools (Advanced Integration for using CMake in VScode with GUI)
+* cpptools (basic language supports for C++ development)
+* CMake (CMake language supports)
+* CMake Tools (Advanced Integration for using CMake in VScode with GUI)
 * Apple: 
-    CodeLLDB (better debugger than built-in gdb) (nur für Apple)
+    CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
 
 ### Change Settings 
@@ -107,20 +114,28 @@ At some point it seems cmake needs a special hint where to find the OSX specific
 You cn set the CMAKE_OSX_??? = $SDKROOT
 
 * Linux:
-increase file watchers
-1) look how the stting is
-cat /proc/sys/fs/inotify/max_user_watches
-2a) change settings
-sudo vim /etc/sysctl.conf
-add at last line 
-fs.inotify.max_user_watches=131072
-2b) start the service again
-sudo sysctl -p
-
+    increase file watchers:
+    1. test for the current setting 
+    ```console 
+            cat /proc/sys/fs/inotify/max_user_watches
+    ```
+    2. a) change settings
+    ```console 
+            sudo vim /etc/sysctl.conf
+    ```
+    2. b) add at last line 
+    ```console 
+        fs.inotify.max_user_watches=131072
+    ```
+    2. c) start the service again
+    ```console 
+        sudo sysctl -p
+    ```
 #### Debugging in VS 
 Add in launch.json two debug entries:
-    1. one points to the the generated standaloe plugin
-    2. one points to the AudioPluginHost (so you need to find your build in the build artefacts directories)
+
+1. one points to the the generated standaloe plugin
+2. one points to the AudioPluginHost (so you need to find your build in the build artifacts directories)
 
 Examples:
 * linux:
@@ -223,12 +238,12 @@ Examples:
     ] 
 ```
 
-## Additinal things
+## Additional things
 
 
 ### Debug Release Builds
    
-in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
+in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
 ### Find a plugin host (You should test your plugin with as many hosts as possible)
 
@@ -285,7 +300,7 @@ JUCE_REPORT_APP_USAGE=0
   
 ## Add some necessary libraries (at least for the next examples)
 
-### Add Eigen in a subdirectory Libs
+### Add eigen (a linear algebra header-based lib, e.g, to compute eigen-values) in a subdirectory Libs
 
 git clone https://gitlab.com/libeigen/eigen.git
 
@@ -327,4 +342,3 @@ AudioDev
 
 * change CMakeLists.txt (add add_subdirectory)
 * build everything with cmake toolchain
-
