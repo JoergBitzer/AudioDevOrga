@@ -7,7 +7,7 @@
 ## install the basic tools
 
 * Windows:
-    0. Install compiler (I would use Visual Studio 2019 the free version is OK)
+    0. Install compiler (I would use Visual Studio 2019 the free version (community edition) is OK)
     1. Install git (use gitbash)
     2. Install CMAKE (dont forget to select option use/change PATH for alle users)
     3. Install Editor (Visual Studio Code works on all plattforms)
@@ -22,7 +22,7 @@
     3. Install Editor (Visual Studio Code works on all plattforms)
 
 * Linux:
-    0. Check installed compiler version (gcc -v should be > 9.0), if not install it
+    0. Check installed compiler version (gcc -v should be > 9.0), if not installed,  install it
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
     3. Install Editor (Visual Studio Code works on all plattforms)
@@ -36,6 +36,10 @@ To prevent to many files cluttering around, start with e new subdirectory
 e.g. AudioDev 
 
 Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
+Your directory structure should look like that
+AudioDev
+    | AudioDevOrga
+    | JUCE
 
 
 ## Test the toolchain so far
@@ -52,14 +56,13 @@ Inside AudioDev. clone JUCE from https://github.com/juce-framework/JUCE
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
 
-    if you have time just 
+    if you have time (I would recommend that, it takes 1-2h based on your system) just 
     cmake --build build
 
-##  Use AudioDev Directory as SuperProject for all Audio Dev (this seems the better way)
+##  Use AudioDev Directory as SuperProject for all Audio Dev 
     1. Copy CMakeList.txt from this git projekt to the AudioDev Directory
 
-## Test with an example
-(You have to add the Libs dir first look at TGM Dev Specific below)
+## Test the toolchain so far with an example
 
 Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 
@@ -87,10 +90,10 @@ CMake Tools (Advanced Integration for using CMake in VScode with GUI)
 
 
 ### Change Settings 
+If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+P and search for c/c++ Edit configuration. This command creates ``c_cpp_properties.json``
+* change (if set otherwise) to ``c++17`` in cpp setting  ``cppStandard``
 
-* change to C++17 in cpp setting crtl+SHift+P cppsettings json
-
-Look at for some tips (especially for Apple users)
+* Look at for some tips (especially for Apple users)
 
 https://github.com/tomoyanonymous/juce_cmake_vscode_example und die Apple Sachen übernehmen
 
@@ -117,7 +120,7 @@ sudo sysctl -p
 #### Debugging in VS 
 Add in launch.json two debug entries:
     1. one points to the the generated standaloe plugin
-    2. one points to the AudioPluginHost (so you need to find your build in the build a.artefacts directories)
+    2. one points to the AudioPluginHost (so you need to find your build in the build artefacts directories)
 
 Examples:
 * linux:
@@ -169,7 +172,7 @@ Examples:
     ]
 }
 ```
-* Windows (Use the Visual studio debugger, LLDB is not working with the debug code from VS compiler):
+* Windows (Use the Visual studio debugger):
 
 ```console
     "configurations": [
@@ -227,12 +230,12 @@ Examples:
    
 in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
-### Find a plugin host
+### Find a plugin host (You should test your plugin with as many hosts as possible)
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
 2. Find other suitable hosts:
     * Windows: 
-        * Reaper (cost 60$)
+        * Reaper (cost 60$ as a private user, you can use it on all plattforms, but not simultaneously)
         * Cubase SE (cost 50$)
     * Linux: 
         * Reaper (cost 60$)
@@ -244,12 +247,12 @@ in VS use Crtl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Relea
         and for all plattforms (including Linux)
 
 
-### plattform dependent code in cmake (usually not necessary)
+### platform dependent code in cmake (usually not necessary)
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
 
 and ENDIF()
 
-possible CMAKE_SYSTEM Werte
+possible CMAKE_SYSTEM values
 Windows   Windows (Visual Studio, MinGW GCC)
 Darwin    macOS/OS X (Clang, GCC)
 Linux     Linux (GCC, Intel, PGI)
@@ -271,35 +274,26 @@ This flag is already set in most examples
 #### Access rights for the final copy step (Windows only)
 
 in Windows the console (for cmake) needs Admin rights. 
-In Windows Visual STudio Code needs Admin rights for the same reason if cmake is used in VS.
-
-
+In Windows Visual Studio Code needs Admin rights for the same reason if cmake is used in VS.
 
 ### Prevent the splash screen (see license, if you are allowed to do this)
 
-in target_compile_definitions
+in target_compile_definitions 
 
 JUCE_DISPLAY_SPLASH_SCREEN=0
 JUCE_REPORT_APP_USAGE=0
   
-
-## TGM Dev Specific
+## Add some necessary libraries (at least for the next examples)
 
 ### Add Eigen in a subdirectory Libs
 
 git clone https://gitlab.com/libeigen/eigen.git
 
-### Add TGM Tools (some common files e-g dsp code or LookAndFeel)
+### Add TGM Tools (some common files e.g. dsp code or LookAndFeel)
 
 git clone git@github.com:JoergBitzer/TGMTools.git
 
-
-## Final directory Structure
-
-after you cloned two example projects in AudioDev directory (good for testing)
-
-git clone git@github.com:JoergBitzer/Filtarbor.git
-git clone git@github.com:JoergBitzer/DebugAudioWriter.git
+Your directory structure should look like this
 
 AudioDev
     | AudioDevOrga
@@ -308,20 +302,29 @@ AudioDev
     | Libs
     | ----| Eigen
     | ----| TGMTools
-    CMakeLists.txt
+
+
+
+## More examples (one tool and one real plugin)
+
+* Clone two example projects in AudioDev directory (good for testing)
+
+git clone git@github.com:JoergBitzer/Filtarbor.git
+git clone git@github.com:JoergBitzer/DebugAudioWriter.git
 
 All new plugins have their own sub_dir
-example would be DebugAudioWriter
 
 AudioDev
     | AudioDevOrga
     | CrossPlugInTest
     | DebugAudioWriter
+    | Filtabor
     | JUCE
     | Libs
     | ----| eigen
     | ----| TGMTools
     CMakeLists.txt
 
-
+* change CMakeLists.txt (add add_subdirectory)
+* build everything with cmake toolchain
 

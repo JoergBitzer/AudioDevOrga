@@ -35,12 +35,15 @@ set(CMAKE_CXX_STANDARD 17)
 #add_compile_definitions(FACTORY_PRESETS)
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
-include_directories(Libs/TGMTools)
-# this is for the eigen library (https://gitlab.com/libeigen/eigen)
-include_directories(Libs/eigen;Libs/eigen/unsupported)
+
+# we will add these two libraries later
+# some tools I developed earlier
+ #include_directories(Libs/TGMTools)
+ #file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+ # this is for the eigen library (https://gitlab.com/libeigen/eigen)
+ #include_directories(Libs/eigen;Libs/eigen/unsupported)
 
 
-file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
 
 # if you have access zo the vst2.4 sdk (and the license from Steinberg)
 # set the path for JUCE
@@ -49,7 +52,3 @@ file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
 
 # Add your projects
 # add_subdirectory(CrossPlugInTest)                  
-# add_subdirectory(DebugAudioWriter)
-# add_subdirectory(Filtarbor)
-# add_subdirectory(AudioDevTemplate)
-add_subdirectory(EQoder)
