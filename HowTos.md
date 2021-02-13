@@ -1,8 +1,4 @@
 
-
-
-
-
 ### Plugins with Presets
 
 
@@ -55,7 +51,7 @@ from https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x
 
 
 
-### Mehr zu CMAKE
+### More CMAKE
 https://mirkokiefer.com/cmake-by-example-f95eb47d45b1
 
 präprozessor definitions
@@ -63,9 +59,8 @@ https://cmake.org/cmake/help/latest/command/add_compile_definitions.html#command
 
 
 
-### Sonstige Ergänzungen
+### Additional things:
 
-Moegliche sinnvolle Erweiterungen
     JUCE_DISPLAY_SPLASH_SCREEN=0
     JUCE_REPORT_APP_USAGE=0
 
@@ -83,15 +78,12 @@ Moegliche sinnvolle Erweiterungen
     juce_add_plugin
 
 
-    Fuer VS Code Nutzung
+    How to use VSCode
 
     https://github.com/tomoyanonymous/juce_cmake_vscode_example
 
-    Fuer Testuung in Github
+    Testing in Github
 
     https://github.com/sudara/pamplejuce
 
-
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include
 
