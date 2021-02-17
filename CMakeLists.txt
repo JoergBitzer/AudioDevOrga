@@ -33,6 +33,7 @@ set(CMAKE_CXX_STANDARD 17)
 # or
 
 #add_compile_definitions(FACTORY_PRESETS)
+add_compile_definitions(USE_JUCE) # internal define for some tools
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 
