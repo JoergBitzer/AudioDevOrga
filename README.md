@@ -17,6 +17,7 @@ Missing:
 1. make a new directory (I would recommend just below home or c:/d: ). I usually use AudioDev
 2. cd into this directory and clone this repository
 3. read ``installReadMe.md``
+4. read ``HowToBuildANewPlugIn.md``
 
 # Requirements to learn plugin development
 
