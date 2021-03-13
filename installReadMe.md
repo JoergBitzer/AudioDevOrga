@@ -245,6 +245,8 @@ Examples:
    
 in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
+For Windows check if the MSVC Redistributables (2015-2019) are installed.
+
 ### Find a plugin host (You should test your plugin with as many hosts as possible)
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
@@ -342,3 +344,4 @@ AudioDev
 
 * change CMakeLists.txt (add add_subdirectory)
 * build everything with cmake toolchain
+

@@ -1,9 +1,9 @@
 # How to build a new plugin
 (Second Read after installReadMe)
 ## Prerequisites
-* think about what you want to archive (effect, instrument, GUI draft, Name)
+* think about what you want to achieve (effect, instrument, GUI draft, Name)
 * (Without GitHub) Create a new subdirectory with the name of your new plugin
-* (With Github) Create a new Repositiory and clone this repository into the directory AudioDev
+* (With Github) Create a new Repository and clone this repository into the directory AudioDev
 
 ## Start
 * Copy *.cpp *.h and CMakeLists.txt from the Template into the newly created directory
