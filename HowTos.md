@@ -10,6 +10,14 @@
 
  https://cmake.org/cmake/help/latest/command/add_compile_definitions.html#command:add_compile_definitions
 
+### How to add OpenGL 
+
+You have to add  juce::juce_opengl  in 
+target_link_libraries( ) im Projekt CMakeLists.txt File
+
+Dies scheint immer zu gelten (Die richtige Lib dazu packen), wenn man nicht nur die Standard JUCE Sachen verwendet. 
+
+
 ### How to make plattform spefic code (file names for example)
 
 from https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x-ios-linux-windows-in-c-preprocessor
