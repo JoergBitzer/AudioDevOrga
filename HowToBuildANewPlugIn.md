@@ -7,8 +7,8 @@
 
 ## Start
 * Copy *.cpp *.h and CMakeLists.txt from the Template into the newly created directory
+* rename all instances of Template***** in processor und Editor cpp and h file into your Pluginname (e.g. with (linux) sed -i 's/Template/YourPlugInName/g' *.* )
 * Change CMakeLists.txt file accordingly (set Name, kind of effect etc.)
-* rename all instances of AudioTemplate***** in processor und Editor cpp and h file into your Pluginname
 * Add your new subdirectory to the CMakeLists.txt in AudioDev
 
 ## Coding
