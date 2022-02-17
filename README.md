@@ -27,9 +27,10 @@ Missing:
 
 # Some remarks
 
-1. I am not a professional c++ developer (I was, a long time ago with a focus on signal processing). So, please forgive me, if I am at some points not at the edge of c++ development. My code is developed for learning purposes not optimality. However, the final plugins will be on a professional level.
+1. I am not a professional c++ developer (I was, a long time ago with a focus on signal processing). So, please forgive me, if I am at some points not at the edge of c++ development. My code is developed for learning purposes not optimality. However, the final plugins will be close to a professional level.
 2. I am sure, lots of people will show you the development process in a different and perhaps better way. However, I assure you, my way will give you some help at the beginning and navigate around some pitfalls on the way, especially if you are interested in platform independent design.
-3. No strings, no costs and no responsibility attached from my side.
+3. Find your own way, how to use tools and how to develop things, but keep an open mind. There is so much to learn.
+4. No strings, no costs and no responsibility attached from my side.
 
 
 
