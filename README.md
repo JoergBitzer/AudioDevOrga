@@ -22,7 +22,7 @@ Missing:
 # Requirements to learn plugin development
 
 1. Have some basic understanding of C++ (you will learn more during the development process)
-2. Have some basic understanding of your tools (compiler (gcc, xCode or VS), git, cmake)
+2. Have some basic understanding of your tools (compiler (gcc, xCode or VS), git, cmake, editor (e.g. VS Code))
 3. Understand the legal aspects, if you develop with JUCE
 
 # Some remarks
