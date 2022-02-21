@@ -4,7 +4,7 @@ It is still subject to change and in a developing phase
 
 So far:
 1. the installation process for the toolchain is described
-2. a template is provided (resizable and with a preset handler)
+2. a template is provided (resizable plugin-window and with a preset handler)
 3. several examples are provided
 4. a tutorial, how to start a new plugin is provided
 
@@ -15,7 +15,7 @@ Missing:
 # Start
 
 1. make a new directory (I would recommend just below home or c:/d: ). I usually use AudioDev
-2. cd into this directory and clone this repository
+2. cd into this directory and clone this repository (git clone git@github.com:JoergBitzer/AudioDevOrga.git).
 3. read ``installReadMe.md``
 4. read ``HowToBuildANewPlugIn.md``
 

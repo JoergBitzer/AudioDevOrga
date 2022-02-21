@@ -1,8 +1,8 @@
 # Plugin (VST/AU with JUCE) Development with CMAKE for all plattforms (install help)
 
 ## Requirements: 
-1. Basic understanding of git (clone, staging, commit etc) and cmake (what is cmake?)
-2. Some knowledge in C++ or at least Java for OOP concepts
+1. Basic understanding of git (clone, staging (add), commit ,etc) and cmake (what is cmake?). Visual Studio Code will help to use CMake and Git.
+2. Some basic knowledge of C++ or at least Java for OOP concepts
 
 ## install the basic tools
 
@@ -44,27 +44,32 @@ AudioDev
 
 ## Test the toolchain so far
 
-From JUCE REadme.md
-    cd /path/to/JUCE
-* Debug Versions
+Build the Juce tools (From JUCE Readme.md). DemoRunner is a nice demo of several Juce possibilities, AudioPluginHost is a simple but very useful debugging host for AU and VST. Using Projucer is the alternative way to manage JUCE projects. If you stay with me and CMake, you don't have to build Projucer.
+
+* Change to the JUCE path: cd /path/to/JUCE
+* Build Debug versions 
 ```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON 
-    cmake --build build --target DemoRunner
+    cmake --build build --target DemoRunner 
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
 ```
 
-* Release
+* or build Release versions
 ```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON -DCMAKE_BUILD_TYPE:STRING=Release
     cmake --build build --target DemoRunner
     cmake --build build --target AudioPluginHost
     cmake --build build --target Projucer
 ```
-if you have time (I would recommend that, it takes 1-2h based on your system) just 
+if you have time (I would recommend that, it takes 1-2h based on your system) build all tools 
 ```console 
     cmake --build build
 ```
+
+* Decide if you want to use Projucer ==> if yes, you have to switch to other tutorials. Here, we will stay with CMake.
+
+* Decide if you want to use the provided templates for plug-in development. I will use it for all my plug-in developments. (However, some basic tutorials (videos) in German will be given without using the templates).
 
 ##  Use AudioDev Directory as SuperProject for all Audio Dev 
 
@@ -78,7 +83,7 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 ```console 
    add_subdirectory(CrossPlugInTest)                  
 ```
-2. Build the SuperProject or use the cmake tools given in VS Code
+2. Build the SuperProject or use the cmake tools given in VS Code (see next section, how to install and use VSC)
 ```console 
     cmake -B build
     cmake --build build
@@ -102,7 +107,7 @@ If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Sh
 
 * Look at for some tips (especially for Apple users)
 
-https://github.com/tomoyanonymous/juce_cmake_vscode_example und die Apple Sachen übernehmen
+https://github.com/tomoyanonymous/juce_cmake_vscode_example und use the tips for MacOS
 
 * Apple: 
 Be careful if bash or zsh is your default console in VS (usually its is bash). change in settings for zsh
@@ -111,7 +116,7 @@ After install Xcode and type xcode-select --install and in terminal. open ~/.zsh
 
 * Apple (still unclear for me, it works now without, but I changed and rechanged a lot):
 At some point it seems cmake needs a special hint where to find the OSX specifics (which is at SDKROOT)
-You cn set the CMAKE_OSX_??? = $SDKROOT
+You can set the CMAKE_OSX_??? = $SDKROOT
 
 * Linux:
     increase file watchers:
@@ -119,7 +124,7 @@ You cn set the CMAKE_OSX_??? = $SDKROOT
     ```console 
             cat /proc/sys/fs/inotify/max_user_watches
     ```
-    2. a) change settings
+    2. a) change settings (with an editor like vim or nano)
     ```console 
             sudo vim /etc/sysctl.conf
     ```
@@ -245,7 +250,7 @@ Examples:
    
 in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
-For Windows check if the MSVC Redistributables (2015-2019) are installed.
+For Windows check if the MSVC Redistributables (2015-2019) are installed. If not, install.
 
 ### Find a plugin host (You should test your plugin with as many hosts as possible)
 
@@ -259,9 +264,11 @@ For Windows check if the MSVC Redistributables (2015-2019) are installed.
     * Apple:
         * Reaper (cost 60$)
 
-3. For effects find a nice Synth as Source
-        Free and very good: https://surge-synthesizer.github.io     
+3. For effects find a nice Synth as source signal:
+    * Surge or SurgeXT: Free and very good: https://surge-synthesizer.github.io     
         and for all plattforms (including Linux)
+    * Vital: https://vital.audio/ 
+
 
 
 ### platform dependent code in cmake (usually not necessary)
@@ -293,7 +300,7 @@ This flag is already set in most examples
 in Windows the console (for cmake) needs Admin rights. 
 In Windows Visual Studio Code needs Admin rights for the same reason if cmake is used in VS.
 
-### Prevent the splash screen (see license, if you are allowed to do this)
+### Prevent the splash screen (see license, if you are allowed to do this, usually you are not)
 
 in target_compile_definitions 
 
