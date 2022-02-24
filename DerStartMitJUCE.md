@@ -112,7 +112,7 @@ In PLuginEditor.cpp die Zeilen 24-26 nach Geschmack ändern und speichern nicht 
     g.setFont (18.0f);
     g.drawFittedText ("Welcome to my World!", getLocalBounds(), juce::Justification::centred, 1);
 ```
-Neu kompilierenmit cmake --build build
+Neu kompiliere nmit cmake --build build
 
 PluginHost neu starten. 
 

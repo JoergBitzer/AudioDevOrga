@@ -246,7 +246,7 @@ Examples:
 ## Additional things
 
 
-### Debug Release Builds
+### Debug or Release Builds
    
 in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
