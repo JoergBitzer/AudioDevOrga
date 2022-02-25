@@ -5,7 +5,7 @@ Ziele dieses Tutorials:
 3. Parameter-Handling und Parameter-Smoothing
 
 Wichtige Anmerkungen: 
-Dieses Tutorial hat nur das Ziel bestimmte Konzepte zu verdeutlichen. Wir werden die eigentlichen Plug-Ins anders und mit Hilfe von Templates erstellen. Alles was hier gemacht wird, wird also anschließend weg geschmissen. Dies ist ein wichtiger Punkt. Lernt man neue bessere Wege, muss man sich von alten Dingen trennen.
+Dieses Tutorial hat nur das Ziel bestimmte Konzepte zu verdeutlichen. Wir werden die eigentlichen Plug-Ins mit anderen JUCE Werkzeugen und mit Hilfe von Templates erstellen. Alles was hier gemacht wird, wird also anschließend verworfen. Dies ist ein wichtiger Punkt. Lernt man neue bessere Wege, muss man sich von alten Dingen trennen.
 
 ## Vorbereitungen
 1. Anlegen eines Unterverzeichnis: Zum Bsp GainPlugin in unserem Unterordner AudioDev.
@@ -115,6 +115,107 @@ In PLuginEditor.cpp die Zeilen 24-26 nach Geschmack ändern und speichern nicht 
 Neu kompiliere nmit cmake --build build
 
 PluginHost neu starten. 
+
+## Gain V1
+Nur zur Erinnerung: Dies ist nicht der Weg, wie man ihn für Steuerungs-Parameter nutzt. Trotzdem ist es ein Weg für die GUI-Plugin Kommunikation (also für nicht automatisierbare oder speicherbare Veränderung der GUI). Ob man das will oder braucht, hängt vom Ziel und der eigenen Präferenz ab.
+
+### Gain in PluginProcessor.h/cpp (Version 1)
+
+Ein Gain ist zunächst nicht weiter als eine Multiplikation aller Eingangswerte (Oft Samples genannt, Ein Frame ist of ein Sample über mehrere Kanäle, Ein Block sind mehrere Frames) miit einem konstanten Wert, der zum leiser werden kleiner eins und zum verstärken größer 1 sein sollte. Nun ist das Ohr in der Wahrnehmung nicht so aufgebaut, dass es die Änderung der Multiplikation von 0.1 auf 0.2 genau so wahrnimmt wie von 0.9 auf 1.0. Statt dessen ist das Ohr ansatzweise logarithmisch. Deshalb gibt man Gains in dB an und der Refernzwert ist 1.
+Also 0dB = 1. Die Umrechnung erfolgt über gain = 10^(gain_log/20). 
+
+### Programmierung in PluginProcessor.h/cpp:
+1. Interne (private) Variable für den Gain anlegen (Unten im Header private suchen). zB m_gain (m_ für Membervariable, dies ist Geschmackssache.Einige nutzen oft nur _gain, andere machen diese Unterscheidung nicht. Ich empfehle es aber sehr.) und initialisieren.
+
+```cpp
+private: 
+    float m_gain = 1.f;
+```
+2. Methode zur Umrechnung als setter im Header schreiben (public Methode)
+
+```cpp
+    //========== Eigene Erweiterung =====================
+    void setGain(const float gain_dB){m_gain = pow(10.0,gain_dB/20.0);};
+private:
+    float m_gain  = 1.f;
+```
+3. Multiplikation in processBlock einbauen (ab Zeile 147).
+```cpp
+    int NrOfSamples = buffer.getNumSamples();
+    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    {
+        auto* channelData = buffer.getWritePointer (channel);
+        juce::ignoreUnused (channelData);
+        // ..do something to the data...
+        for (int kk = 0; kk < NrOfSamples; ++kk)
+        {
+            channelData[kk] *= m_gain;
+        }
+    }
+```
+4. Test 
+    1. Filtergraph im AudioPlugInHost aufbauen (Quelle zB Surge, dann unser ASimpleGain und Out.) und speichern
+    2. Output anhören und AudioPlugInHost beenden
+    3. Initialisierungswert auf 0.1 setzen und anschließend auf 5.0. Immer wieder den Host dazwischen beenden und natürlich neu kompilieren.
+
+WICHTIG: Immer wenn man ein neues Feature einbaut, das Ergebnis testen. (Profis schreiben für so etwas UnitTests, das kommt vlt später.).
+
+### Programmierung in PluginEditor.h/cpp:
+Ziel ist ein Slider im Wertebereich von -80 bis +10 dB aufzubauen und damit den Gain des Audiosignals zu ändern.
+
+GUI Programmierung ist in JUCE auf der einen Seite einfach aber auch sehr mächtig (viele Details). Dies ist nur ein Anriss.
+
+
+1. Die Klasse zusätzlich zu einem Listener für Slider erweitern durch Ableitung
+```cpp
+class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Slider::Listener
+```
+
+2. Hinzufügen des Sliders im Header (private)
+
+3. In der cpp Datei den Slider definieren und die Größe des Plugins anpassen. Wichtig ist hier die lambda-Funktion, die onValueChange zugeordnet wird (Zeigt die enorme Nützlichkeit von lambda Funktionen).
+Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man nur bei int und float machen. Vorsicht, wenn aus den gesetzten Werten andere zunächst berechnet werden. Hier gibt es andere und bessere Lösungen über Block-free FiFos (brauchen wir später).
+
+```cpp
+   setSize (100, 300);
+    addAndMakeVisible (m_gainSlider);
+    m_gainSlider.setRange (-80, 10.0);          // [1]
+    m_gainSlider.setTextValueSuffix (" dB");     // [2]
+    m_gainSlider.setSliderStyle(Slider::LinearVertical);
+    m_gainSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxAbove, true, 60, 20);
+    m_gainSlider.onValueChange = [this]{processorRef.setGain(m_gainSlider.getValue());}; 
+    m_gainSlider.setValue(0.0);
+```
+
+5. In der resized Methode den Slider bezogen auf die Größe des PlugIns zeichnen. Dies macht man in der Prof-Version relativ, um eine stufenloses vergrößern/verkleinern zuzulassen.
+```cpp
+    m_gainSlider.setBounds (20, 20, getWidth() - 40, getHeight()-40);
+```
+
+6. paint aufräumen: Also nur die FillAll Routine stehen lassen. Alles andere löschen.
+
+7. Testen.
+
+## Probleme
+
+* Gain wird nicht als Parameter im Host gespeichert. Das PLugin startet immer wieder mit 0dB
+* Bei schnellen Bewegungen des Gain kanckt es. (Test mit tieffrequenten Sinus (100Hz))
+
+## Erkenntnisse:
+
+* Es gibt genau einen Start (Einsprung) für jedes Plugin ==> Processor
+* Hier findet die Audioverarbeitung statt
+* Der Processor ruft den Editor auf (und übergibt eine Adresse auf sich selbst, so dass der Editor den Processor kennt)
+* Der Editor ist selbstständig und läuft in einem eigenen Thread (GUI Thread)
+* Der Processor darf NIEMALS auf den Editor zugreifen (Die GUI könnte ja nicht da sein). Umgekehrt ja.
+
+## Nächste Schritte:
+
+1. Wie verhindert man Clicks und Crackles beim regeln von Parametern. (Das unterscheidet gute von schlechten PlugIns) ==> Viele Lösungen, von denen wir im Laufe der Zeit einige kennen lernen. Für Gains spezielle Lösungen in JUCE.
+2. Wie baut man richtige Parameter und speichert diese auch im Host. ==> Viele Lösungen, wir gehen den JUCE Weg
+
+Nächstes File: 2_ASimpleGain.md
+
 
 
 
