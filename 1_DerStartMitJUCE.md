@@ -201,7 +201,7 @@ Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man
 * Gain wird nicht als Parameter im Host gespeichert. Das PLugin startet immer wieder mit 0dB
 * Bei schnellen Bewegungen des Gain kanckt es. (Test mit tieffrequenten Sinus (100Hz))
 
-## Erkenntnisse:
+## Take-Home Message:
 
 * Es gibt genau einen Start (Einsprung) für jedes Plugin ==> Processor
 * Hier findet die Audioverarbeitung statt
