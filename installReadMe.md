@@ -23,7 +23,7 @@
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not installed,  install it
-        (e.g. sudo apt install build-essential gdb)
+        (e.g. sudo apt install g++ build-essential gdb)
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
     3. Install Editor (Visual Studio Code works on all plattforms)
