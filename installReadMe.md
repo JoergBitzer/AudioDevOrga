@@ -23,6 +23,7 @@
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not installed,  install it
+        (e.g. sudo apt install build-essential gdb)
     1. check if git is available (git --version), if not install it
     2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
     3. Install Editor (Visual Studio Code works on all plattforms)
@@ -41,6 +42,31 @@ AudioDev
     | AudioDevOrga
     | JUCE
 
+## (Linux only) install dependencies for Linux
+read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
+
+or just use
+
+sudo apt update
+sud apt install pkg-config
+sudo apt install libasound2-dev libjack-jackd2-dev \
+    ladspa-sdk \
+    libcurl4-openssl-dev  \
+    libfreetype6-dev \
+    libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev \
+    libwebkit2gtk-4.0-dev \
+    libglu1-mesa-dev mesa-common-dev
+
+
+## Prepare Visual Studio Code part 1
+
+### add Tools/Extensions
+* cpptools (basic language supports for C++ development)
+* CMake (CMake language supports)
+* CMake Tools (Advanced Integration for using CMake in VScode with GUI)
+* CMake use configure CMake (Crtl+Shift+P (Command Palette))
+* Apple: 
+    CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
 ## Test the toolchain so far
 
@@ -91,15 +117,7 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
 
 
-## Prepare Visual Studio Code
-
-### add Tools/Extensions
-* cpptools (basic language supports for C++ development)
-* CMake (CMake language supports)
-* CMake Tools (Advanced Integration for using CMake in VScode with GUI)
-* Apple: 
-    CodeLLDB (better debugger than built-in gdb) (for Apple only)
-
+## Prepare Visual Studio Code part 2
 
 ### Change Settings 
 If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+P and search for c/c++ Edit configuration. This command creates ``c_cpp_properties.json``
