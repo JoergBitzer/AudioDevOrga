@@ -48,7 +48,7 @@ read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencie
 or just use
 
 sudo apt update
-sud apt install pkg-config
+sudo apt install pkg-config
 sudo apt install libasound2-dev libjack-jackd2-dev \
     ladspa-sdk \
     libcurl4-openssl-dev  \
@@ -210,6 +210,7 @@ Examples:
     ]
 }
 ```
+(Mai 2022): dbg 12.0.9 is buggy but the standard for ubuntu 22.04 LTS. At the moment you have to compile 12.1 for yourself (not easy). Recommendation: Use Ubuntu 20.04 LTS instead
 * Windows (Use the Visual studio debugger):
 
 ```console
