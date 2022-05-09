@@ -17,11 +17,12 @@ Dieses Tutorial hat nur das Ziel bestimmte Konzepte zu verdeutlichen. Wir werden
 Dies ist die Datei, die CMake zur Erzeugung der Projekte nutzt. 
 Diese Datei ist gut kommentiert aber es sind einige Anpassungen notwendig, vor allem, da JUCE in einem Parallelordner liegt.
 
-1. Die Datei CMakeLists.txt einmal in den höheren Ordner (JuceDev) kopieren (wir brauchen die Datei zweimal)
+1. Die Datei CMakeLists.txt einmal in den höheren Ordner (AudioDev) kopieren (wir brauchen die Datei zweimal)
+    (Dies gilt nur, wenn man vorher nicht InstallReadMe.md durchgeführt hat. Falls ja, existiert diese oberste CmakeList.txt bereits. Dann direkt zum Punkt 5. springen.)
 2. Diese Datei öffnen und alles ab Zeile 27 löschen
 3. Die Zeile 17 ändern in (Ist eigentlich irrelevant): project(JUCEDEVREPO VERSION 0.0.1)
 4. Kommentierung löschen/Aktivieren von Zeile 26: add_subdirectory(JUCE)
-5. Unser Projektordner als subdirectory hinzufügen (neue Zeile 27): add_subdirectory(GainPlugIn)
+5. Den neuen Projektordner als subdirectory hinzufügen (neue Zeile 27): add_subdirectory(GainPlugIn)
 6. Datei speichern und so lassen.
 
 7. Die CMakeLists.txt im Unterordner GainPlugIn öffnen und die folgenden Änderungen vornehmen:
@@ -37,15 +38,15 @@ juce_add_plugin(AudioPluginGain
     # VERSION ...                               # Set this if the plugin version is different to the project version
     # ICON_BIG ...                              # ICON_* arguments specify a path to an image file to use as an icon for the Standalone
     # ICON_SMALL ...
-    COMPANY_NAME "Jade"                          # Specify the name of the plugin's author
+    COMPANY_NAME "Jade Hochschule"                          # Specify the name of the plugin's author
     IS_SYNTH FALSE                       # Is this a synth or an effect?
     NEEDS_MIDI_INPUT FALSE               # Does the plugin need midi input?
     NEEDS_MIDI_OUTPUT FALSE              # Does the plugin need midi output?
     IS_MIDI_EFFECT FALSE                 # Is this plugin a MIDI effect?
     # EDITOR_WANTS_KEYBOARD_FOCUS TRUE/FALSE    # Does the editor need keyboard focus?
     COPY_PLUGIN_AFTER_BUILD FALSE        # Should the plugin be installed to a default location after building?
-    PLUGIN_MANUFACTURER_CODE Jade               # A four-character manufacturer id with at least one upper-case character
-    PLUGIN_CODE gai0                            # A unique four-character plugin id with exactly one upper-case character
+    PLUGIN_MANUFACTURER_CODE IHAJ               # A four-character manufacturer id with at least one upper-case character
+    PLUGIN_CODE Gai0                            # A unique four-character plugin id with exactly one upper-case character
                                                 # GarageBand 10.3 requires the first letter to be upper-case, and the remaining letters to be lower-case
     FORMATS AU VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
     PRODUCT_NAME "ASimpleGain")        # The name of the final executable, which can differ from the target name
@@ -112,7 +113,7 @@ In PLuginEditor.cpp die Zeilen 24-26 nach Geschmack ändern und speichern nicht 
     g.setFont (18.0f);
     g.drawFittedText ("Welcome to my World!", getLocalBounds(), juce::Justification::centred, 1);
 ```
-Neu kompiliere nmit cmake --build build
+Neu kompilieren mit cmake --build build
 
 PluginHost neu starten. 
 

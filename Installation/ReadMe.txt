@@ -31,7 +31,7 @@ copy the whole directory to
 
 Done! Start your DAW.
 
-Have fun and read the manual for instructions and bakground information.
+Have fun and read the manual for instructions and background information.
 
 J. Bitzer aka audio-dsp 
 
@@ -46,7 +46,7 @@ https://github.com/JoergBitzer/
 The code is open source under a BSD 3-clause license
 
 # license
-Copyright (c) 2021 XXX, Bitzer, All rights reserved.
+Copyright (c) 2022, Bitzer, All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

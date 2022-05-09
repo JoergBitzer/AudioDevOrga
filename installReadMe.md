@@ -312,7 +312,7 @@ this step can be automated by using the JUCE settings (CMakeLists.txt of the plu
 juce_add_plugin add 
 COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
 
-This flag is already set in most examples
+This flag is already set in most examples. For Windows admin privilileges are necessary.
 
 #### Access rights for the final copy step (Windows only)
 
