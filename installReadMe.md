@@ -36,7 +36,7 @@ Only JUCE (www.juce.com) is described here.
 To prevent to many files cluttering around, start with e new subdirectory
 e.g. AudioDev 
 
-Inside AudioDev. clone JUCE (at least Version 6.0.8) from https://github.com/juce-framework/JUCE
+Inside AudioDev. clone JUCE (V7 stable is the current one) from https://github.com/juce-framework/JUCE
 Your directory structure should look like that
 AudioDev
     | AudioDevOrga
