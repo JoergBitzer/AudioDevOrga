@@ -45,26 +45,12 @@ AudioDev
 ## (Linux only) install dependencies for Linux
 read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
 
-or just use
-
-sudo apt update
-sudo apt install pkg-config
-sudo apt install libasound2-dev libjack-jackd2-dev \
-    ladspa-sdk \
-    libcurl4-openssl-dev  \
-    libfreetype6-dev \
-    libx11-dev libxcomposite-dev libxcursor-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev \
-    libwebkit2gtk-4.0-dev \
-    libglu1-mesa-dev mesa-common-dev
-
-
 ## Prepare Visual Studio Code part 1
 
 ### add Tools/Extensions
 * cpptools (basic language supports for C++ development)
 * CMake (CMake language supports)
-* CMake Tools (Advanced Integration for using CMake in VScode with GUI)
-* CMake use configure CMake (Crtl+Shift+P (Command Palette))
+* CMake Tools (Advanced Integration for using CMake in VScode with GUI). Afterwards configure CMake (Crtl+Shift+P (Command Palette))
 * Apple: 
     CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
@@ -120,7 +106,7 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 ## Prepare Visual Studio Code part 2
 
 ### Change Settings 
-If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+P and search for c/c++ Edit configuration. This command creates ``c_cpp_properties.json``
+If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+P and search for c/c++ Edit configuration(JSON). This command creates ``c_cpp_properties.json``
 * change (if set otherwise) to ``c++17`` in cpp setting  ``cppStandard``
 
 * Look at for some tips (especially for Apple users)
@@ -137,11 +123,13 @@ At some point it seems cmake needs a special hint where to find the OSX specific
 You can set the CMAKE_OSX_??? = $SDKROOT
 
 * Linux:
-    increase file watchers:
+    increase file watchers (if to small):
     1. test for the current setting 
     ```console 
             cat /proc/sys/fs/inotify/max_user_watches
     ```
+    if this number is smaller than 100000 do the following steps, else ignore
+    
     2. a) change settings (with an editor like vim or nano)
     ```console 
             sudo vim /etc/sysctl.conf
@@ -156,9 +144,11 @@ You can set the CMAKE_OSX_??? = $SDKROOT
     ```
 #### Debugging in VS 
 Add in launch.json two debug entries:
+If you do not have a launch.json file: 
 
-1. one points to the the generated standaloe plugin
-2. one points to the AudioPluginHost (so you need to find your build in the build artifacts directories)
+1. load a cpp-file
+2. click on the debug menu (on the left) and click "create a launch.json file"
+3. change the file for two starting point for the debugger, one points to the the generated standaloe plugin, the second points to the AudioPluginHost (so you need to find your build in the build artifacts directories)
 
 Examples:
 * linux:
@@ -210,7 +200,7 @@ Examples:
     ]
 }
 ```
-(Mai 2022): dbg 12.0.9 is buggy but the standard for ubuntu 22.04 LTS. At the moment you have to compile 12.1 for yourself (not easy). Recommendation: Use Ubuntu 20.04 LTS instead
+
 * Windows (Use the Visual studio debugger):
 
 ```console
@@ -290,16 +280,6 @@ For Windows check if the MSVC Redistributables (2015-2019) are installed. If not
 
 
 
-### platform dependent code in cmake (usually not necessary)
-check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
-
-and ENDIF()
-
-possible CMAKE_SYSTEM values
-Windows   Windows (Visual Studio, MinGW GCC)
-Darwin    macOS/OS X (Clang, GCC)
-Linux     Linux (GCC, Intel, PGI)
-
 
 ### copy the plugin to the right directory 
 
@@ -326,6 +306,18 @@ in target_compile_definitions
 JUCE_DISPLAY_SPLASH_SCREEN=0
 JUCE_REPORT_APP_USAGE=0
   
+### if you need platform dependent code in cmake (usually not necessary)
+check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
+
+and ENDIF()
+
+possible CMAKE_SYSTEM values
+Windows   Windows (Visual Studio, MinGW GCC)
+Darwin    macOS/OS X (Clang, GCC)
+Linux     Linux (GCC, Intel, PGI)
+
+
+
 ## Add some necessary libraries (at least for the next examples)
 
 ### Add eigen (a linear algebra header-based lib, e.g, to compute eigen-values) in a subdirectory Libs
