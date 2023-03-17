@@ -82,7 +82,7 @@ Wichtig sind zum Anfang die Methoden:
 ## Kompilieren und Testen / Orientierung
 
 1. Kompilieren ob alles geht.
-In einer Konsole im Unterordner JuceDev 
+In einer Konsole im Unterordner AudioDev 
 
 ```console 
     cmake . -B build 
@@ -92,13 +92,13 @@ ausführen.
 
 2. Testen:
     1. Finden des Hosts. Ist gut versteckt:
-    /JuceDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost/AudioPluginHost
+    /AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost/AudioPluginHost
     2. Starten 
     3. Unter Optionen, Edit the List of ... wählen
     4. Options aufrufen
     5. Scan for new and updated VST plugins auswählen
     6. Ein weiteres Verzeichnis hinzufügen (+)
-    7. Plugin suchen (ist gut versteckt): JuceDev/build/GainPlugIn/AudioPluginGain_artefacts/Debug/VST3/
+    7. Plugin suchen (ist gut versteckt): AudioDev/build/GainPlugIn/AudioPluginGain_artefacts/Debug/VST3/
     8. Das neue Plugin (a simple gain) sollte in der Liste der Available Plugin auftauchen.
     9. Das plugin im Hauptfenster laden im Menupunkt Plugins CreatePLugins beim Vendor (hier Jade) schauen.
     10. GUI öffnen. Rechte Maustaste Show plugin GUI ==> Ein graues Fenster mit Hello World erscheint.
