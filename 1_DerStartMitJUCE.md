@@ -9,7 +9,7 @@ Dieses Tutorial hat nur das Ziel bestimmte Konzepte zu verdeutlichen. Wir werden
 
 ## Vorbereitungen
 1. Anlegen eines Unterverzeichnis: Zum Bsp GainPlugin in unserem Unterordner AudioDev.
-2. Kopieren des Bsps (alle 5 Dateien) aus dem Unterordner JuceDev/JUCE/examples/CMake/AudioPlugin/ in unser neues Unterverzeichnis
+2. Kopieren des Bsps (alle 5 Dateien) aus dem Unterordner AudioDev/JUCE/examples/CMake/AudioPlugin/ in unser neues Unterverzeichnis
 
 ## Analyse was vorliegt.
 
@@ -30,7 +30,7 @@ Diese Datei ist gut kommentiert aber es sind einige Anpassungen notwendig, vor a
 * Zeile 17 ändern: project(AUDIO_PLUGIN_EXAMPLE VERSION 0.0.1) zu
                    project(AUDIO_PLUGIN_GAIN VERSION 0.1.0)
 * Tip: Bei der Versionierung sollte man sich an das Semantic Versioning halten https://semver.org/lang/de/
-* Zeile 40 ändern: juce_add_plugin(AudioPluginGain
+* Zeile 40 ändern: juce_add_plugin(AudioPluginGain)
 * Die Zeilen 41-55 anpassen: zB so: 
 
 ```console
@@ -122,7 +122,7 @@ Nur zur Erinnerung: Dies ist nicht der Weg, wie man ihn für Steuerungs-Paramete
 
 ### Gain in PluginProcessor.h/cpp (Version 1)
 
-Ein Gain ist zunächst nicht weiter als eine Multiplikation aller Eingangswerte (Oft Samples genannt, Ein Frame ist of ein Sample über mehrere Kanäle, Ein Block sind mehrere Frames) miit einem konstanten Wert, der zum leiser werden kleiner eins und zum verstärken größer 1 sein sollte. Nun ist das Ohr in der Wahrnehmung nicht so aufgebaut, dass es die Änderung der Multiplikation von 0.1 auf 0.2 genau so wahrnimmt wie von 0.9 auf 1.0. Statt dessen ist das Ohr ansatzweise logarithmisch. Deshalb gibt man Gains in dB an und der Refernzwert ist 1.
+Ein Gain ist zunächst nicht weiter als eine Multiplikation aller Eingangswerte (Oft Samples genannt, Ein Frame ist of ein Sample über mehrere Kanäle, Ein Block sind mehrere Frames) mit einem konstanten Wert, der zum leiser werden kleiner eins und zum verstärken größer 1 sein sollte. Nun ist das Ohr in der Wahrnehmung nicht so aufgebaut, dass es die Änderung der Multiplikation von 0.1 auf 0.2 genau so wahrnimmt wie von 0.9 auf 1.0. Statt dessen ist das Gehör ansatzweise logarithmisch. Deshalb gibt man Gains in dB an und der Referenzwert ist 1.
 Also 0dB = 1. Die Umrechnung erfolgt über gain = 10^(gain_log/20). 
 
 ### Programmierung in PluginProcessor.h/cpp:
@@ -159,7 +159,7 @@ private:
     2. Output anhören und AudioPlugInHost beenden
     3. Initialisierungswert auf 0.1 setzen und anschließend auf 5.0. Immer wieder den Host dazwischen beenden und natürlich neu kompilieren.
 
-WICHTIG: Immer wenn man ein neues Feature einbaut, das Ergebnis testen. (Profis schreiben für so etwas UnitTests, das kommt vlt später.).
+WICHTIG: Immer wenn man ein neues Feature einbaut, das Ergebnis testen. (Profis schreiben für so etwas UnitTests, das kommt vlt. später.).
 
 ### Programmierung in PluginEditor.h/cpp:
 Ziel ist ein Slider im Wertebereich von -80 bis +10 dB aufzubauen und damit den Gain des Audiosignals zu ändern.
@@ -173,6 +173,9 @@ class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor, publ
 ```
 
 2. Hinzufügen des Sliders im Header (private)
+```cpp
+    Slider m_gainSlider;
+```
 
 3. In der cpp Datei den Slider definieren und die Größe des Plugins anpassen. Wichtig ist hier die lambda-Funktion, die onValueChange zugeordnet wird (Zeigt die enorme Nützlichkeit von lambda Funktionen).
 Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man nur bei int und float machen. Vorsicht, wenn aus den gesetzten Werten andere zunächst berechnet werden. Hier gibt es andere und bessere Lösungen über Block-free FiFos (brauchen wir später).
@@ -188,7 +191,7 @@ Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man
     m_gainSlider.setValue(0.0);
 ```
 
-5. In der resized Methode den Slider bezogen auf die Größe des PlugIns zeichnen. Dies macht man in der Prof-Version relativ, um eine stufenloses vergrößern/verkleinern zuzulassen.
+5. In der resized Methode den Slider bezogen auf die Größe des PlugIns zeichnen. Dies macht man in der Profi-Version relativ, um eine stufenloses vergrößern/verkleinern zuzulassen.
 ```cpp
     m_gainSlider.setBounds (20, 20, getWidth() - 40, getHeight()-40);
 ```

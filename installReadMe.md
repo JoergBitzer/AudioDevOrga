@@ -303,10 +303,11 @@ In Windows Visual Studio Code needs Admin rights for the same reason if cmake is
 
 in target_compile_definitions 
 
-JUCE_DISPLAY_SPLASH_SCREEN=0
-JUCE_REPORT_APP_USAGE=0
-  
-### if you need platform dependent code in cmake (usually not necessary)
+    JUCE_DISPLAY_SPLASH_SCREEN=0
+    JUCE_REPORT_APP_USAGE=0
+
+
+### Platform dependent code in cmake (usually not necessary)
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
 
 and ENDIF()
@@ -335,7 +336,7 @@ add a subdirectory Libs
 
 2. git clone git@github.com:JoergBitzer/TGMTools.git
 
-### change CMakeLists.txt (the one in AudioDev)
+### Change CMakeLists.txt (the one in AudioDev)
 
 uncomment the following lines to include eigen and tgmtools in the build process
 
@@ -346,7 +347,8 @@ include_directories(Libs/eigen;Libs/eigen/unsupported)
 
 Your directory structure should look like this
 
-AudioDev
+
+    AudioDev
     | AudioDevOrga
     | CrossPlugInTest
     | JUCE
@@ -365,7 +367,9 @@ git clone git@github.com:JoergBitzer/DebugAudioWriter.git
 
 All new plugins have their own sub_dir
 
-AudioDev
+
+    
+    AudioDev
     | AudioDevOrga
     | CrossPlugInTest
     | DebugAudioWriter
