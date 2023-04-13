@@ -15,7 +15,11 @@ cmake_minimum_required(VERSION 3.15)
 # directories, and the current project version. This is a standard CMake command.
 
 project(REPOSTART VERSION 0.0.1)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17) # or 20
+
+# if you have binaries or a static lib in your projects
+# set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 
 #if build fail, uncomment these lines 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)

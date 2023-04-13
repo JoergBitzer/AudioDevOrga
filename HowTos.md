@@ -50,6 +50,18 @@ from https://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x
     #error "Unknown compiler"
 #endif
 
+## Binaries and static Libs
+
+In a Linux environment we need the compilet switch -fPIC
+To get that we have to add
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+below add_library()
+
+
+
+
 
 
 ### More CMAKE
