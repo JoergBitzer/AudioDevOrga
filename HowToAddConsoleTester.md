@@ -33,6 +33,11 @@ AudioDev
         |-mySecondTest
 
 Lets start with a simple Example. We want to test the JUCE AudioBuffer Class in a simple Gain function (I know that AudioBuffer have this functionalty, its just for the demonstration). Our main.cpp would look like this without the JUCE specifics
+
+Add a subfolder in tester with the name gaintester. 
+
+Create an empty main.cpp file
+
 ```cpp
 #include <iostream>
 
@@ -91,11 +96,13 @@ int main()
 
 ```
 
-## Add a new CMakeLists.txt fpr your new test
+This code will have a lot o errors or unknown variables, since JUCE is not known at this point.
+
+## Add a new CMakeLists.txt for your new test
 
 JUCE has a mechanism for console applications. You can find examples in the example directory for CMAKE.
 
-For our example , put a new CMakeLists.txt in your new subfolder (e.g /AudioDev/tester/myFirstTest)
+For our example , put a new CMakeLists.txt in your new subfolder (e.g /AudioDev/tester/gaintester)
 
 Here is an example for the AudioBufferTest
 
@@ -136,7 +143,7 @@ target_link_libraries(AudioBufferTest
 Save the file and add the new subdirectory to the top level CMakeLists.txt file (The one in the AudioDev directory)
 
 ```cmake
-    add_subdirectory(tester/AudioBufferTest)
+    add_subdirectory(tester/gaintester)
 ```
 
 Save the file, the new build environment is build.
@@ -152,4 +159,5 @@ The final step is to add the header files from the modules. Of course for real w
 ```
 
 Now you can use all the features from these two JUCE modules. Auto Completion should work fine.
+
 

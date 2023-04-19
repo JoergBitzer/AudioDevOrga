@@ -167,17 +167,12 @@ Ziel ist ein Slider im Wertebereich von -80 bis +10 dB aufzubauen und damit den 
 GUI Programmierung ist in JUCE auf der einen Seite einfach aber auch sehr mächtig (viele Details). Dies ist nur ein Anriss.
 
 
-1. Die Klasse zusätzlich zu einem Listener für Slider erweitern durch Ableitung
+1. Hinzufügen des Sliders im Header (private)
 ```cpp
-class AudioPluginAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Slider::Listener
+    juce::Slider m_gainSlider;
 ```
 
-2. Hinzufügen des Sliders im Header (private)
-```cpp
-    Slider m_gainSlider;
-```
-
-3. In der cpp Datei den Slider definieren und die Größe des Plugins anpassen. Wichtig ist hier die lambda-Funktion, die onValueChange zugeordnet wird (Zeigt die enorme Nützlichkeit von lambda Funktionen).
+2. In der cpp Datei den Slider definieren und die Größe des Plugins anpassen. Wichtig ist hier die lambda-Funktion, die onValueChange zugeordnet wird (Zeigt die enorme Nützlichkeit von lambda Funktionen).
 Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man nur bei int und float machen. Vorsicht, wenn aus den gesetzten Werten andere zunächst berechnet werden. Hier gibt es andere und bessere Lösungen über Block-free FiFos (brauchen wir später).
 
 ```cpp
@@ -185,20 +180,20 @@ Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man
     addAndMakeVisible (m_gainSlider);
     m_gainSlider.setRange (-80, 10.0);          // [1]
     m_gainSlider.setTextValueSuffix (" dB");     // [2]
-    m_gainSlider.setSliderStyle(Slider::LinearVertical);
-    m_gainSlider.setTextBoxStyle(Slider::TextEntryBoxPosition::TextBoxAbove, true, 60, 20);
+    m_gainSlider.setSliderStyle(juce::Slider::LinearVertical);
+    m_gainSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxAbove, true, 60, 20);
     m_gainSlider.onValueChange = [this]{processorRef.setGain(m_gainSlider.getValue());}; 
     m_gainSlider.setValue(0.0);
 ```
 
-5. In der resized Methode den Slider bezogen auf die Größe des PlugIns zeichnen. Dies macht man in der Profi-Version relativ, um eine stufenloses vergrößern/verkleinern zuzulassen.
+3. In der resized Methode den Slider bezogen auf die Größe des PlugIns zeichnen. Dies macht man in der Profi-Version relativ, um eine stufenloses vergrößern/verkleinern zuzulassen.
 ```cpp
     m_gainSlider.setBounds (20, 20, getWidth() - 40, getHeight()-40);
 ```
 
-6. paint aufräumen: Also nur die FillAll Routine stehen lassen. Alles andere löschen.
+4. paint aufräumen: Also nur die FillAll Routine stehen lassen. Alles andere löschen.
 
-7. Testen.
+5. Testen.
 
 ## Probleme
 
