@@ -7,8 +7,8 @@
 ## install the basic tools
 
 * Windows:
-    0. Install compiler (I would use Visual Studio 2019 the free version (community edition) is OK)
-    1. Install git (use gitbash)
+    0. Install compiler (I would use Visual Studio 2019 or later. The free version (community edition) is OK)
+    1. Install git (e.g. use gitbash)
     2. Install CMAKE (dont forget to select option use/change PATH for alle users)
     3. Install Editor (Visual Studio Code works on all plattforms)
 
@@ -95,7 +95,7 @@ Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
 ```console 
    add_subdirectory(CrossPlugInTest)                  
 ```
-2. Build the SuperProject or use the cmake tools given in VS Code (see next section, how to install and use VSC)
+2. Build the SuperProject or use the cmake tools (perhaps you have to restart VSC to get the cmake tools visible) given in VS Code (see next section, how to install and use VSC)
 ```console 
     cmake -B build
     cmake --build build
@@ -203,6 +203,8 @@ Examples:
 
 * Windows (Use the Visual studio debugger):
 
+Tips: Look if the path is correct and change accordingly
+
 ```console
     "configurations": [
         {
@@ -218,16 +220,17 @@ Examples:
         },
  
         {
-            "name": "PluginHost Debug VS",
+            "name": "PluginHost Release VS",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "C:/AudioDevNew/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost.exe",
+            "program": "C:/AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false
         },
+    ]
 ```     
 
 * Apple (add just the .app for the AudioPluginHost)
