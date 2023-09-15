@@ -56,12 +56,7 @@ Das Problem ist, dass es mehrere Kanäle geben kann. Der Gain darf aber nur einm
 
 5. Wir werden hierzu noch Alternativen kennenlernen, wenn wir auf die Template Lösung wechseln. Diese basiert auf eine Zerlegung der Eingangsblöcke in definierte gleich große Audioblöcke (zb 32 Samples) und dann der Nutzung der Funktionen des AudioBuffers von JUCE (applyRamp ist eine gute Idee hier).
 
-## Echte Parameter
-Paramter-Handling ist eins der komplexesten Probleme bei der Audio Plugin Programmierung. Vor allem bei vielen Parametern verliert man leicht den Überblick und es führt eigentlich immer zu Spaghetti-Code (Schaut Euch einfach einige der frei zugänglichen Repositories an. Parameter sind fast immer schwer zu verfolgen.).
-Zusätzlich haben Parameteränderungen mindestens zwei Quellen, den User durch die GUI und den Host/DAW durch die Automation. Zusätzlich kann man auch noch eine Midi-Steuerung über CC einbauen. Die GUI muss immer den aktuellen Wert anzeigen und die eigentliche Audioberechnung sollte auch immer mit den aktuell gültigen Parametern arbeiten. 
 
-### Lösung in JUCE
-JUCE bietet für dieses Problem und noch einige mehr (Undo/Redo, Speicherung im Host) eine gute Lösung, die aber in der Bedienung etwas komplizierter ist: AudioProcessorValueTreeState.
 
 
 

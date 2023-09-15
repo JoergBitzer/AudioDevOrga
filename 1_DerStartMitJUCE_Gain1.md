@@ -108,7 +108,7 @@ ausführen.
 
 In PLuginEditor.cpp die Zeilen 24-26 nach Geschmack ändern und speichern nicht vergessen: Bsp
 
-```console 
+```cpp 
     g.setColour (juce::Colours::red);
     g.setFont (18.0f);
     g.drawFittedText ("Welcome to my World!", getLocalBounds(), juce::Justification::centred, 1);
