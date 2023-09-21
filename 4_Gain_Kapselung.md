@@ -79,37 +79,27 @@ GainAudioProcessor::GainAudioProcessor()
 }
 void GainAudioProcessor::prepareToPlay(float sampleRate)
 {
-    m_smoothedGain.reset(sampleRate,0.01); // 100ms is enough for a smooth gain, 
+    m_smoothedGain.reset(sampleRate,0.02); // 20ms is enough for a smooth gain, 
 
 }
 void GainAudioProcessor::processBlock(juce::AudioBuffer<float>& data)
 {
-    // check parameter update
     if (*m_gainParam != m_gainParamOld)
     {
         m_gainParamOld = *m_gainParam;
         m_gain = powf(10.f,m_gainParamOld/20.f);
+        m_smoothedGain.setTargetValue(m_gain);
     }
-
-    juce::ScopedNoDenormals noDenormals;
-    
-    int NrOfSamples = data.getNumSamples();
-    int chns = data.getNumChannels();
-
-    m_smoothedGain.setTargetValue(m_gain);
-    float curGain;
-    for (int channel = 0; channel < chns; ++channel)
+    auto dataPointer = data.getArrayOfWritePointers();
+    for (auto kk = 0; kk < data.getNumSamples(); ++kk)
     {
-        auto* channelData = data.getWritePointer (channel);
-        // ..do something to the data...
-        for (int kk = 0; kk < NrOfSamples; ++kk)
+        float curVal = m_smoothedGain.getNextValue();
+        for (int channel = 0; channel < data.getNumChannels(); ++channel)
         {
-            if (channel == 0)
-                curGain = m_smoothedGain.getNextValue();
-            channelData[kk] *= curGain;
+            dataPointer[channel][kk] *= curVal;
         }
+        // ..do something to the data...
     }
-
 }
 void GainAudioProcessor::addParameter(std::vector < std::unique_ptr<juce::RangedAudioParameter>>& paramVector)
 {
