@@ -18,13 +18,12 @@ juce::SmoothedValue<float,juce::ValueSmoothingTypes::Multiplicative>   //log (mu
 
 1. Im Header die Smoothing Klasse hinzufügen. 
 ```cpp
-#include "JuceHeader.h" // muss nach ganz oben ins File
-
 // unten bei private    
     float m_gain = 1.f;
     // juce::LinearSmoothedValue <float> m_smoothedGain;
     juce::SmoothedValue<float,juce::ValueSmoothingTypes::Multiplicative> m_smoothedGain;
 ```
+Falls 
 
 2. Reset und richtig initialisieren
 Erst ab prepareToPLay (Wird immer zum Start von Audio vom Host/DAW aufgerufen) ist die Samplingrate und die maximale Blockgröße bekannt (Diese kann auch kleiner sein, zB wenn die DAW im Loop Modus ist. Es gibt hier keine Grenzen. Eine DAW könnte auch processBlock pro Sample aufrufen). Zum testen setzen wir die Smoothingzeit extrem hoch auf 2.050 Sekunden. 50ms (Also ohne die 2 vorne) sind eigentlich genug. 
@@ -35,20 +34,26 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 ```
 
 3. In der processBlock Routine das Smoothing auf Sample-Ebene ermöglichen
-Zunächst wird der Zielwert pro Block (Aufruf von processBlock) gesetzt. Anschließend pro Sample geglättet.
-Das Problem ist, dass es mehrere Kanäle geben kann. Der Gain darf aber nur einmal erneuert (getNextValue) werden.
+Zunächst wird der Zielwert pro Block (Aufruf von processBlock) gesetzt. Dies kann z.B. dann erfolgen, wenn sich wirklich ein Wert ändert. 
 ```cpp
-    m_smoothedGain.setTargetValue(m_gain);
-    float curGain;
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    if (*m_gainParam != m_gainParamOld)
     {
-        auto* channelData = buffer.getWritePointer (channel);
-        // ..do something to the data...
-        for (int kk = 0; kk < NrOfSamples; ++kk)
+        m_gainParamOld = *m_gainParam;
+        m_gain = powf(10.f,m_gainParamOld/20.f);
+        m_smoothedGain.setTargetValue(m_gain);
+    }
+```
+Die benötigte Rechenleistung ist aber so klein, dass es kein Problem ist, wenn die Funktion pro Block einmal aufgerufen wird.
+Anschließend wird pro Sample geglättet.
+Das Problem ist, dass es mehrere Kanäle geben kann. Der Gain darf aber nur einmal erneuert (getNextValue) werden. Deshalb müssen die beiden Schleifen gedreht werden. den zweidimensionalen Zugriff auf die Daten (Kanäle und Samples)bekommen wir durch die Funktion getArrayOfWritePointers des Audiobuffers.
+```cpp
+    auto dataPointer = buffer.getArrayOfWritePointers();
+    for (auto kk = 0; kk < buffer.getNumSamples(); ++kk)
+    {
+        float curVal = m_smoothedGain.getNextValue();
+        for (int channel = 0; channel < totalNumInputChannels; ++channel)
         {
-            if (channel == 0)
-                curGain = m_smoothedGain.getNextValue();
-            channelData[kk] *= curGain;
+            dataPointer[channel][kk] *= curVal;
         }
     }
 ```
