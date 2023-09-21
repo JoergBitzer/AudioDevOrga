@@ -28,7 +28,7 @@ void TemplateAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 	auto state = m_parameterVTS->copyState();
-	std::unique_ptr<XmlElement> xml(state.createXml());
+	std::unique_ptr<juce::XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);
 
 }
@@ -36,12 +36,12 @@ void TemplateAudioProcessor::setStateInformation (const void* data, int sizeInBy
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
- 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+ 	std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 
 	if (xmlState.get() != nullptr)
 		if (xmlState->hasTagName(m_parameterVTS->state.getType()))
         {
-            ValueTree vt = ValueTree::fromXml(*xmlState);
+            juce::ValueTree vt = juce::ValueTree::fromXml(*xmlState);
 			m_parameterVTS->replaceState(vt);
         }
 }
