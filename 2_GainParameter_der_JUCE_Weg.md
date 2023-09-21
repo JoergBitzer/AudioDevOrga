@@ -118,6 +118,7 @@ Das ist alles. JUCE kümmert sich nun darum, dass Änderungen von außen durch A
 2. Gain-Funktion ist nicht gekapselt, sondern in der JUCE Schnittstelle implementiert. Das sollte man vermeiden. Dies gilt für das Audio-Processing, wie auch für die GUI.
 
 
+Nächstes File: 3_GainGlaettung.md
 
 
 

@@ -213,7 +213,7 @@ Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man
 1. Wie verhindert man Clicks und Crackles beim regeln von Parametern. (Das unterscheidet gute von schlechten PlugIns) ==> Viele Lösungen, von denen wir im Laufe der Zeit einige kennen lernen. Für Gains spezielle Lösungen in JUCE.
 2. Wie baut man richtige Parameter und speichert diese auch im Host. ==> Viele Lösungen, wir gehen den JUCE Weg
 
-Nächstes File: 2_ASimpleGain.md
+Nächstes File: 2_GainParameter_der_JUCE_Weg.md
 
 
 
