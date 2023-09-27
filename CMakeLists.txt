@@ -41,14 +41,19 @@ add_compile_definitions(USE_JUCE) # internal define for some tools
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 
-# we will add these two libraries later
-# some tools I developed earlier
- #include_directories(Libs/TGMTools)
- #file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+# add these two libraries later (if needed)
  # this is for the eigen library (https://gitlab.com/libeigen/eigen)
- #include_directories(Libs/eigen;Libs/eigen/unsupported)
+# include_directories(Libs/eigen;Libs/eigen/unsupported)
 
+# and the TGM Tools
 
+# old method
+# include_directories(Libs/TGMTools)
+# file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
+
+#new
+# include_directories(Libs/TGMStaticLib)
+# add_subdirectory(Libs/TGMStaticLib)
 
 # if you have access zo the vst2.4 sdk (and the license from Steinberg)
 # set the path for JUCE
