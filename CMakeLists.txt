@@ -42,7 +42,7 @@ add_compile_definitions(USE_JUCE) # internal define for some tools
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 
 # add these two libraries later (if needed)
- # this is for the eigen library (https://gitlab.com/libeigen/eigen)
+# this is for the eigen library (https://gitlab.com/libeigen/eigen)
 # include_directories(Libs/eigen;Libs/eigen/unsupported)
 
 # and the TGM Tools
