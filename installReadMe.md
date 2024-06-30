@@ -1,4 +1,4 @@
-# Plugin (VST/AU with JUCE) Development with CMAKE for all plattforms (install help)
+# Plugin (VST/AU with JUCE) Development with CMAKE for all platforms (install help)
 
 ## Requirements: 
 1. Basic understanding of git (clone, staging (add), commit ,etc) and cmake (what is cmake?). Visual Studio Code will help to use CMake and Git.
@@ -9,28 +9,28 @@
 * Windows:
     0. Install compiler (I would use Visual Studio 2019 or later. The free version (community edition) is OK)
     1. Install git (e.g. use gitbash)
-    2. Install CMAKE (dont forget to select option use/change PATH for alle users)
-    3. Install Editor (Visual Studio Code works on all plattforms)
+    2. Install CMAKE (don't forget to select option use/change PATH for alle users)
+    3. Install Editor (Visual Studio Code works on all platforms)
 
 * Apple:
     0. Install compiler (I would use Xcode)
     1. Install git (if not installed)
-    2. Install CMAKE (dont forget to add the path to terminal, e.g 
+    2. Install CMAKE (don't forget to add the path to terminal, e.g 
     ```console 
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
     ```
-    3. Install Editor (Visual Studio Code works on all plattforms)
+    3. Install Editor (Visual Studio Code works on all platforms)
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not installed,  install it
         (e.g. sudo apt install g++ build-essential gdb)
     1. check if git is available (git --version), if not install it
-    2. check if CMAKE is avaliable (cmake --version should be > 3.15), if not install it
-    3. Install Editor (Visual Studio Code works on all plattforms)
+    2. check if CMAKE is available (cmake --version should be > 3.15), if not install it
+    3. Install Editor (Visual Studio Code works on all platforms)
 
 ## install audio plugin development framework
 
-Several plattform independent frameworks are available (JUCE, IPlug, VSTGUI)
+Several platform independent frameworks are available (JUCE, IPlug, VSTGUI)
 Only JUCE (www.juce.com) is described here. 
 
 To prevent to many files cluttering around, start with e new subdirectory
@@ -85,7 +85,7 @@ if you have time (I would recommend that, it takes 1-2h based on your system) bu
 
 ##  Use AudioDev Directory as SuperProject for all Audio Dev 
 
-Copy CMakeList.txt from this git projekt to the AudioDev Directory
+Copy CMakeList.txt from this git project to the AudioDev Directory
 
 ## Test the toolchain so far with an example
 
