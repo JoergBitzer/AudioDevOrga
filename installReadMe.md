@@ -89,18 +89,18 @@ Copy CMakeList.txt from this git project to the AudioDev Directory
 
 ## Test the toolchain so far with an example
 
-Clone https://github.com/JoergBitzer/CrossPlugInTest into AudioDev directory
+Clone https://github.com/JoergBitzer/CrossDevPlugInTest into AudioDev directory
 
 1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
 ```console 
-   add_subdirectory(CrossPlugInTest)                  
+   add_subdirectory(CrossDevPlugInTest)                  
 ```
 2. Build the SuperProject or use the cmake tools (perhaps you have to restart VSC to get the cmake tools visible) given in VS Code (see next section, how to install and use VSC)
 ```console 
     cmake -B build
     cmake --build build
 ```
-3. Search in build for CrossPugin.artefacts (Standalone) and test the CrossPlugIn
+3. Search in build for CrossDevPugin.artefacts (Standalone) and test the CrossDevPlugIn
 
 
 ## Prepare Visual Studio Code part 2
@@ -267,21 +267,23 @@ For Windows check if the MSVC Redistributables (2015-2019) are installed. If not
 ### Find a plugin host (You should test your plugin with as many hosts as possible)
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
-2. Find other suitable hosts:
+2. Find other suitable hosts (several a free, other costs less than 100$, some are very expensive). These are some examples without given any preference or advertisement:
     * Windows: 
-        * Reaper (cost 60$ as a private user, you can use it on all plattforms, but not simultaneously)
-        * Cubase SE (cost 50$)
+        * Reaper (cost less than 100$ as a private user, you can use it on all platforms, but not simultaneously)
+        * Cubase SE 
+        * Bitwig
+        * Studio one
     * Linux: 
-        * Reaper (cost 60$)
+        * Reaper 
+        * Adour
     * Apple:
-        * Reaper (cost 60$)
+        * Reaper 
+        * Cubase SE
 
 3. For effects find a nice Synth as source signal:
     * Surge or SurgeXT: Free and very good: https://surge-synthesizer.github.io     
         and for all plattforms (including Linux)
     * Vital: https://vital.audio/ 
-
-
 
 
 ### copy the plugin to the right directory 
@@ -295,7 +297,7 @@ this step can be automated by using the JUCE settings (CMakeLists.txt of the plu
 juce_add_plugin add 
 COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
 
-This flag is already set in most examples. For Windows admin privilileges are necessary.
+This flag is already set in most examples. For Windows admin privileges are necessary.
 
 #### Access rights for the final copy step (Windows only)
 
@@ -353,7 +355,7 @@ Your directory structure should look like this
 
     AudioDev
     | AudioDevOrga
-    | CrossPlugInTest
+    | CrossDevPlugInTest
     | JUCE
     | Libs
     | ----| Eigen
@@ -374,7 +376,7 @@ All new plugins have their own sub_dir
     
     AudioDev
     | AudioDevOrga
-    | CrossPlugInTest
+    | CrossDevPlugInTest
     | DebugAudioWriter
     | Filtabor
     | JUCE
