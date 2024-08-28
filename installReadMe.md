@@ -312,68 +312,21 @@ Linux     Linux (GCC, Intel, PGI)
 
 help: (https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html)
 
+## Another example (a debug tool to write audio bits)
 
-## Add some necessary libraries (at least for the next examples)
+* Clone the following project in the AudioDev directory
 
-add a subdirectory Libs 
-
-
-### Add eigen for linear algebra support
-
-1. cd Libs
-
-2. git clone https://gitlab.com/libeigen/eigen.git
-
-### Add TGM Tools (some common files e.g. dsp code or LookAndFeel)
-
-1. cd Libs 
-
-2. git clone git@github.com:JoergBitzer/TGMTools.git
-
-### Change CMakeLists.txt (the one in AudioDev)
-
-uncomment the following lines to include eigen and tgmtools in the build process
-
-include_directories(Libs/TGMTools)
-file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
-
-include_directories(Libs/eigen;Libs/eigen/unsupported)
-
-Your directory structure should look like this
-
-
-    AudioDev
-    | AudioDevOrga
-    | CrossDevPlugInTest
-    | JUCE
-    | Libs
-    | ----| Eigen
-    | ----| TGMTools
-
-
-
-## More examples (one tool and one real plugin)
-
-* Clone two example projects in AudioDev directory (good for testing)
-
-git clone git@github.com:JoergBitzer/Filtarbor.git
 git clone git@github.com:JoergBitzer/DebugAudioWriter.git
 
 All new plugins have their own sub_dir
-
-
     
     AudioDev
     | AudioDevOrga
     | CrossDevPlugInTest
     | DebugAudioWriter
-    | Filtabor
     | JUCE
-    | Libs
-    | ----| eigen
-    | ----| TGMTools
     CMakeLists.txt
 
-* change CMakeLists.txt (e.g. add add_subdirectory (Filtarbor) )
-* build everything with cmake toolchain
+* change CMakeLists.txt (e.g. add add_subdirectory (DebugAudioWriter) )
+* build everything with the cmake toolchain
 
