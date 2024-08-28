@@ -36,7 +36,7 @@ Only JUCE (www.juce.com) is described here.
 To prevent to many files cluttering around, start with e new subdirectory
 e.g. AudioDev 
 
-Inside AudioDev. clone JUCE (V7 stable is the current one) from https://github.com/juce-framework/JUCE
+Inside AudioDev. clone JUCE (V8 stable is the current one) from https://github.com/juce-framework/JUCE
 Your directory structure should look like that
 AudioDev
     | AudioDevOrga
@@ -123,7 +123,7 @@ At some point it seems cmake needs a special hint where to find the OSX specific
 You can set the CMAKE_OSX_??? = $SDKROOT
 
 * Linux:
-    increase file watchers (if to small):
+    increase file watchers (if to small) (seems to be necessary for Ubuntu <= 18.04):
     1. test for the current setting 
     ```console 
             cat /proc/sys/fs/inotify/max_user_watches
@@ -262,28 +262,24 @@ Tips: Look if the path is correct and change accordingly
    
 in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug
 
-For Windows check if the MSVC Redistributables (2015-2019) are installed. If not, install.
+### Windows MSVC Redristibutables
+
+For Windows check if the MSVC Redistributables (2015-2022) are installed. If not, install.
+https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170
+
 
 ### Find a plugin host (You should test your plugin with as many hosts as possible)
 
 1. You can build the pluginhost from JUCE (or did it already in the test)
-2. Find other suitable hosts (several a free, other costs less than 100$, some are very expensive). These are some examples without given any preference or advertisement:
-    * Windows: 
-        * Reaper (cost less than 100$ as a private user, you can use it on all platforms, but not simultaneously)
-        * Cubase SE 
-        * Bitwig
-        * Studio one
-    * Linux: 
-        * Reaper 
-        * Adour
-    * Apple:
-        * Reaper 
-        * Cubase SE
+2. Find other suitable hosts (several are free (see for example here https://www.musicradar.com/news/best-free-daws-music-production-software or here (https://midination.com/daw/free-daw/best-free-daw/)), other costs less than 100$, some are very expensive). 
 
-3. For effects find a nice Synth as source signal:
-    * Surge or SurgeXT: Free and very good: https://surge-synthesizer.github.io     
-        and for all plattforms (including Linux)
+3. For the development of VST-effects find a synthesizer (here some free and open source examples, mostly for all platforms)
+    * SurgeXT: https://surge-synthesizer.github.io     
     * Vital: https://vital.audio/ 
+    * Dexed (FM Synthesis) https://asb2m10.github.io/dexed/
+    * OBxd https://github.com/reales/OB-Xd
+    * Odin2 https://thewavewarden.com/pages/odin-2
+  and audio samples (e.g. Music-Radar free samples (https://www.musicradar.com/news/tech/free-music-samples-royalty-free-loops-hits-and-multis-to-download-sampleradar)) as source signal:
 
 
 ### copy the plugin to the right directory 
@@ -297,20 +293,12 @@ this step can be automated by using the JUCE settings (CMakeLists.txt of the plu
 juce_add_plugin add 
 COPY_PLUGIN_AFTER_BUILD TRUE               # Should the plugin be installed to a default location after building?
 
-This flag is already set in most examples. For Windows admin privileges are necessary.
+This flag is already set in most examples. For Windows admin privileges (for Visual Code) are necessary.
 
 #### Access rights for the final copy step (Windows only)
 
 in Windows the console (for cmake) needs Admin rights. 
 In Windows Visual Studio Code needs Admin rights for the same reason if cmake is used in VS.
-
-### Prevent the splash screen (see license, if you are allowed to do this, usually you are not)
-
-in target_compile_definitions 
-
-    JUCE_DISPLAY_SPLASH_SCREEN=0
-    JUCE_REPORT_APP_USAGE=0
-
 
 ### Platform dependent code in cmake (usually not necessary)
 check with IF(CMAKE_SYSTEM_NAME STREQUAL Linux)
@@ -322,6 +310,7 @@ Windows   Windows (Visual Studio, MinGW GCC)
 Darwin    macOS/OS X (Clang, GCC)
 Linux     Linux (GCC, Intel, PGI)
 
+help: (https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_NAME.html)
 
 
 ## Add some necessary libraries (at least for the next examples)
