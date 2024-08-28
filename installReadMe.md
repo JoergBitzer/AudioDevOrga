@@ -1,7 +1,12 @@
 # Plugin (VST/AU with JUCE) Development with CMAKE for all platforms (install help)
 
+This file will help you:
+1. set up your development toolchain
+2. test the toolchain
+3. build a first helper plugin
+
 ## Requirements: 
-1. Basic understanding of git (clone, staging (add), commit ,etc) and cmake (what is cmake?). Visual Studio Code will help to use CMake and Git.
+1. Basic understanding of git (clone, staging (add), commit ,etc) and cmake (what is cmake?). Visual Studio Code (The Editor, not the IDE (that is Visual Studio)) will help to use CMake and Git.
 2. Some basic knowledge of C++ or at least Java for OOP concepts
 
 ## install the basic tools
@@ -9,7 +14,7 @@
 * Windows:
     0. Install compiler (I would use Visual Studio 2019 or later. The free version (community edition) is OK)
     1. Install git (e.g. use gitbash)
-    2. Install CMAKE (don't forget to select option use/change PATH for alle users)
+    2. Install CMAKE (don't forget to select option use/change PATH for all users)
     3. Install Editor (Visual Studio Code works on all platforms)
 
 * Apple:
@@ -51,6 +56,7 @@ read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencie
 * cpptools (basic language supports for C++ development)
 * CMake (CMake language supports)
 * CMake Tools (Advanced Integration for using CMake in VScode with GUI). Afterwards configure CMake (Crtl+Shift+P (Command Palette))
+* if you have access (student), add CoPilot from GitHub/Microsoft
 * Apple: 
     CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
@@ -58,7 +64,7 @@ read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencie
 
 Build the Juce tools (From JUCE Readme.md). DemoRunner is a nice demo of several Juce possibilities, AudioPluginHost is a simple but very useful debugging host for AU and VST. Using Projucer is the alternative way to manage JUCE projects. If you stay with me and CMake, you don't have to build Projucer.
 
-* Change to the JUCE path: cd /path/to/JUCE
+* Change to the JUCE path: cd /path/to/JUCE (e.g C:\AudioDev\Juce in Windows) (in a terminal window (to open a terminal in VSCODE: Crtl+Shift+p and enter 'new terminal', the command 'Create new terminal' should be available in the given list of commands))
 * Build Debug versions 
 ```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON 
@@ -89,7 +95,15 @@ Copy CMakeList.txt from this git project to the AudioDev Directory
 
 ## Test the toolchain so far with an example
 
-Clone https://github.com/JoergBitzer/CrossDevPlugInTest into AudioDev directory
+Clone 
+```console
+git@github.com:JoergBitzer/CrossDevPlugInTest.git
+```
+or
+```console
+https://github.com/JoergBitzer/CrossDevPlugInTest.git
+```
+into AudioDev directory
 
 1. Change CMakeFile.txt in the AudioDev Directory by adding (or uncomment)
 ```console 
@@ -100,13 +114,14 @@ Clone https://github.com/JoergBitzer/CrossDevPlugInTest into AudioDev directory
     cmake -B build
     cmake --build build
 ```
-3. Search in build for CrossDevPugin.artefacts (Standalone) and test the CrossDevPlugIn
-
+3. Search in build for CrossDevPlugInTest.artefacts (Standalone) and test the CrossDevPugInTest
+(e.g  C:\AudioDev\build\CrossDevPlugInTest\CrossDevPluginExample_artefacts\
+  Debug\Standalone\CrossDevPluginExample.exe)
 
 ## Prepare Visual Studio Code part 2
 
 ### Change Settings 
-If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+P and search for c/c++ Edit configuration(JSON). This command creates ``c_cpp_properties.json``
+If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+p and search for c/c++ Edit configuration(JSON). This command creates ``c_cpp_properties.json``
 * change (if set otherwise) to ``c++17`` in cpp setting  ``cppStandard``
 
 * Look at for some tips (especially for Apple users)
@@ -256,8 +271,6 @@ Tips: Look if the path is correct and change accordingly
 ```
 
 ## Additional things
-
-
 ### Debug or Release Builds
    
 in VS use Ctrl+Shift+P (Command Palette) -> CMake Select Variant -> Choose Release or Debug

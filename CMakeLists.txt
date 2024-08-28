@@ -8,7 +8,7 @@
 # CMake's behaviour is compatible with the named version. This is a standard CMake command, so more
 # information can be found in the CMake docs.
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.24)
 
 # The top-level CMakeLists.txt file for a project must contain a literal, direct call to the
 # `project()` command. `project()` sets up some helpful variables that describe source/binary
@@ -37,7 +37,7 @@ set(CMAKE_CXX_STANDARD 17) # or 20
 # or
 
 #add_compile_definitions(FACTORY_PRESETS)
-add_compile_definitions(USE_JUCE) # internal define for some tools
+add_compile_definitions(USE_JUCE) # internal define (from JB) for some tools
 
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
 
@@ -47,11 +47,6 @@ add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory
 
 # and the TGM Tools
 
-# old method
-# include_directories(Libs/TGMTools)
-# file(GLOB TGMLIBCPPS "Libs/TGMTools/*.cpp")
-
-#new
 # include_directories(Libs/TGMStaticLib)
 # add_subdirectory(Libs/TGMStaticLib)
 
@@ -61,4 +56,4 @@ add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory
 # and add in juce_add_plugin( FORMATS VST ) there should be VST3 AU and Standalone
 
 # Add your projects
-# add_subdirectory(CrossPlugInTest)                  
+# add_subdirectory(CrossDevPlugInTest)                  
