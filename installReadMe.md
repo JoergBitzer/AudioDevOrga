@@ -338,8 +338,9 @@ All new plugins have their own sub_dir
     | CrossDevPlugInTest
     | DebugAudioWriter
     | JUCE
+    | Tools
     CMakeLists.txt
 
 * change CMakeLists.txt (e.g. add add_subdirectory (DebugAudioWriter) )
 * build everything with the cmake toolchain
-
+* Test with the Plugin-Host
