@@ -31,7 +31,8 @@ Alternatevely you can use the http version:
  git clone https://github.com/JoergBitzer/AudioDevOrga.git
 ```
 3. read ``installReadMe.md``
-4. read ``HowToBuildANewPlugIn.md``
+4. read ``HowToBuildANewPlugIn.md`` if you want to start with your own idea
+   or read ``DerStartMitJUCE_Gain1.md`` (German only) to get an idea, how to start with a simple gain plugin.
 
 
 # Some remarks
