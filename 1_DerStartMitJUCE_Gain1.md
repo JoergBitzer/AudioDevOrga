@@ -22,10 +22,10 @@ Diese Datei ist gut kommentiert aber es sind einige Anpassungen notwendig, vor a
 2. Diese Datei öffnen und alles ab Zeile 27 löschen
 3. Die Zeile 17 ändern in (Ist eigentlich irrelevant): project(JUCEDEVREPO VERSION 0.0.1)
 4. Kommentierung löschen/Aktivieren von Zeile 26: add_subdirectory(JUCE)
-5. Den neuen Projektordner als subdirectory hinzufügen (neue Zeile 27): add_subdirectory(GainPlugIn)
+5. Den neuen Projektordner als subdirectory hinzufügen (neue Zeile 27): add_subdirectory(GainPlugin)
 6. Datei speichern und so lassen.
 
-7. Die CMakeLists.txt im Unterordner GainPlugIn öffnen und die folgenden Änderungen vornehmen:
+7. Die CMakeLists.txt im Unterordner GainPlugin öffnen und die folgenden Änderungen vornehmen:
 
 * Zeile 17 ändern: project(AUDIO_PLUGIN_EXAMPLE VERSION 0.0.1) zu
                    project(AUDIO_PLUGIN_GAIN VERSION 0.1.0)
@@ -93,6 +93,8 @@ ausführen.
 2. Testen:
     1. Finden des Hosts. Ist gut versteckt:
     /AudioDev/JUCE/build/extras/AudioPluginHost/AudioPluginHost_artefacts/Release/AudioPluginHost/AudioPluginHost
+    oder 
+    /AudioDev/Tools/AudioPluginHost
     2. Starten 
     3. Unter Optionen, Edit the List of ... wählen
     4. Options aufrufen
@@ -198,7 +200,7 @@ Achtung: Wir übertreten hier die Thread-Grenzen von GUI zu Audio. Dies darf man
 ## Probleme
 
 * Gain wird nicht als Parameter im Host gespeichert. Das PLugin startet immer wieder mit 0dB
-* Bei schnellen Bewegungen des Gain kanckt es. (Test mit tieffrequenten Sinus (100Hz))
+* Bei schnellen Bewegungen des Gain knackt es. (Test mit tieffrequenten Sinus (100Hz))
 
 ## Take-Home Message:
 
