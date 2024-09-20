@@ -17,12 +17,14 @@ Dieses Tutorial hat nur das Ziel bestimmte Konzepte zu verdeutlichen. Wir werden
 Dies ist die Datei, die CMake zur Erzeugung der Projekte nutzt. 
 Diese Datei ist gut kommentiert aber es sind einige Anpassungen notwendig, vor allem, da JUCE in einem Parallelordner liegt.
 
+Wenn man vorher nicht InstallReadMe.md durchgeführt hat. 
 1. Die Datei CMakeLists.txt einmal in den höheren Ordner (AudioDev) kopieren (wir brauchen die Datei zweimal)
-    (Dies gilt nur, wenn man vorher nicht InstallReadMe.md durchgeführt hat. Falls ja, existiert diese oberste CmakeList.txt bereits. Dann direkt zum Punkt 5. springen.)
 2. Diese Datei öffnen und alles ab Zeile 27 löschen
 3. Die Zeile 17 ändern in (Ist eigentlich irrelevant): project(JUCEDEVREPO VERSION 0.0.1)
 4. Kommentierung löschen/Aktivieren von Zeile 26: add_subdirectory(JUCE)
-5. Den neuen Projektordner als subdirectory hinzufügen (neue Zeile 27): add_subdirectory(GainPlugin)
+
+Ab hier weiter für alle: 
+5. Den neuen Projektordner als subdirectory hinzufügen: add_subdirectory(GainPlugIn)
 6. Datei speichern und so lassen.
 
 7. Die CMakeLists.txt im Unterordner GainPlugin öffnen und die folgenden Änderungen vornehmen:
@@ -30,8 +32,7 @@ Diese Datei ist gut kommentiert aber es sind einige Anpassungen notwendig, vor a
 * Zeile 17 ändern: project(AUDIO_PLUGIN_EXAMPLE VERSION 0.0.1) zu
                    project(AUDIO_PLUGIN_GAIN VERSION 0.1.0)
 * Tip: Bei der Versionierung sollte man sich an das Semantic Versioning halten https://semver.org/lang/de/
-* Zeile 40 ändern: juce_add_plugin(AudioPluginGain)
-* Die Zeilen 41-55 anpassen: zB so: 
+* Die Zeilen 40-55 anpassen: zB so: 
 
 ```console
 juce_add_plugin(AudioPluginGain
@@ -51,12 +52,12 @@ juce_add_plugin(AudioPluginGain
     FORMATS AU VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
     PRODUCT_NAME "ASimpleGain")        # The name of the final executable, which can differ from the target name
 ```
-* Auskommentieren/Aktivieren von Zeile 60 (Achtung Name muss zum plugin namen (Zeile 40) passen ): juce_generate_juce_header(AudioPluginGain)
-* Anpassen Zeile 70 mit dem richtigen Namen (Zeile 40):  target_sources(AudioPluginGain
-* Anpassen Zeile 82 mit dem richtigen Namen (Zeile 40): target_compile_definitions(AudioPluginGain
-* Anpassen Zeile 104 mit dem richtigen Namen (Zeile 40): target_link_libraries(AudioPluginGain
+* Auskommentieren/Aktivieren von Zeile: juce_generate_juce_header(AudioPluginGain) (Achtung Name muss zum plugin namen (Zeile 40) passen ) (ca bei Zeile 60)
+* Anpassen mit dem richtigen Namen (Zeile 40):  target_sources(AudioPluginGain (ca Zeile 70)
+* Anpassen mit dem richtigen Namen (Zeile 40): target_compile_definitions(AudioPluginGain (ca Zeile 82)
+* Anpassen mit dem richtigen Namen (Zeile 40): target_link_libraries(AudioPluginGain (ca Zeile 104)
 
-Natürlich kann man auch replace von AudioPluginExample für alle Instanzen ausführen. Dies ist der sicherere Weg.
+Natürlich kann man auch replace (Crtl + H) von AudioPluginExample für alle Instanzen ausführen. Dies ist der sicherere Weg.
 
 * Wichtig sind noch die Zeilen 70-73. Hier müssen die Source-Files auftauchen, die in das Projekt sollen. Für dieses Beispiel passt es.
 
@@ -82,7 +83,7 @@ Wichtig sind zum Anfang die Methoden:
 ## Kompilieren und Testen / Orientierung
 
 1. Kompilieren ob alles geht.
-In einer Konsole im Unterordner AudioDev 
+In einer Konsole im Unterordner AudioDev oder über die CMAKE Tools von VSCode 
 
 ```console 
     cmake . -B build 
