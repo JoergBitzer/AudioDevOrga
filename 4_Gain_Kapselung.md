@@ -2,10 +2,14 @@
 
 ## Warum?
 Für ein einfaches Gain eine eigene KLasse zu bauen, bzw. 2 KLassen (AudioProcessing, GUI) ist normalerweise Overkill. 
-Hier geht es darum zu lernen, wie wir ab jetzt Audio Plugins programmieren. Dies ist nur eine Möglichkeit von vielen und ich bin sicher, bestimmte Aspekte könnte man noch besser lösen. 
+Hier geht es darum zu lernen, wie man Audio Algorithmen und das dazugehörige Plugin programmieren kann. Dies ist nur eine Möglichkeit von vielen.
+
+## Eventuell neues Projekt aufbauen
+Die Änderungen, die wir im Folgenden vornehmen verändern das bisherige Gain Plugin massiv. Falls man das alte Projekt als Anschauungsmaterial behalten möchte, empfiehlt es sich ein neues Unterverzeichnis anzulegen und die alten Projektdateien zu kopieren. Zusätzlich sollte in CMakeLists.txt die ID und der Name geändert werden. Zusätzlich ist es notwendig die neue cpp Datei in die target_sources aufzunehmen.
 
 ## Anzahl Dateien
 Traditionell würde man 4 Dateien aufbauen (2 cpp, 2 header). Für mich hat sich herausgestellt, dass eine cpp Datei und ein Header ausreicht und alles besser zusammenhält. Welchen Weg Ihr gehen wollt, ist Eure Entscheidung.
+Wir erzeugen also neue Dateien GainAlgo.cpp und GainALgo.h
 
 ## Prädefinition der Parameter
 Die Rahmenparameter (ID, Namen, Min, Max usw) werden im AudioProcessor und in der GUI gebraucht. Es ist deshalb sinnvoll ein globales 
@@ -115,7 +119,7 @@ void GainAudioProcessor::prepareParameter(std::unique_ptr<juce::AudioProcessorVa
     m_gainParam = vts->getRawParameterValue(g_paramGain.ID);
 }
 ```
-## Umbau PluginProcessror.cpp
+## Umbau PluginProcessor.cpp
 
 Das sollte man nun testen, indem wir diese KLasse nun im PluginProcessor.h/cpp nutzen.
 

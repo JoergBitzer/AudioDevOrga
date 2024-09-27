@@ -149,7 +149,7 @@ private:
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
-        juce::ignoreUnused (channelData);
+        // juce::ignoreUnused (channelData);
         // ..do something to the data...
         for (int kk = 0; kk < NrOfSamples; ++kk)
         {
