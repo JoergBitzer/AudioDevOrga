@@ -16,6 +16,20 @@ AudioDev
 
         | mySecondTest
 
+or add a subdirectory tester for your new plugin:
+AudioDev
+    CMakeLists.txt
+
+    | MyCoolPLugin
+
+        | tester
+
+            | myFirstTest
+            | mySecondTest
+
+If a problem is very specific to a special plugin, keep the tester in this directory. If the tested function is more general, you should go for the global tester directory.
+
+
 ## Simple test or development function without any JUCE specifics
 
 1. Create a file with a main function (e.g. miniTestAppMain.cpp )
