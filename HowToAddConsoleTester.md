@@ -1,22 +1,6 @@
 # Add a Console Test Application with JUCE components
 
-Usually you should test functions (mainly math) in a small test application. Often these test application are simple console programs with a CLI (Command Line Interface)
-
-For tests without JUCE it is very simple:
-
-1. Build a file with a main function
-2. Add your header and use it correctly
-3. Add both files to a micro CMakeLists.txt file.
-
-e.g.
-```cmake
-    cmake_minimum_required (VERSION 3.14)
-    project (MiniTestApp)
-
-    add_executable(MiniTestApp miniTestAppMain.cpp miniFunctionToBeTested.cpp)
-```
-
-But what is necessary, if you need JUCE headers and JUCE Tools like AudioBuffer
+Usually you should write test functions (mainly math) in a small test application. Often these test application are simple console programs with a CLI (Command Line Interface)
 
 ## Prepare your directory
 
@@ -26,11 +10,47 @@ For your test routines you should add a new subdirectory tester and in it subdir
 AudioDev
     CMakeLists.txt
 
-    |-tester
+    | tester
 
-        |-myFirstTest
+        | myFirstTest
 
-        |-mySecondTest
+        | mySecondTest
+
+or add a subdirectory tester for your new plugin:
+AudioDev
+    CMakeLists.txt
+
+    | MyCoolPLugin
+
+        | tester
+
+            | myFirstTest
+            | mySecondTest
+
+If a problem is very specific to a special plugin, keep the tester in this directory. If the tested function is more general, you should go for the global tester directory.
+
+
+## Simple test or development function without any JUCE specifics
+
+1. Create a file with a main function (e.g. miniTestAppMain.cpp )
+2. Create or add your header / function to be testes and use it correctly (miniFunctionToBeTested.cpp and miniFunctionToBeTested.h)
+3. Add the necessary files to a small CMakeLists.txt file.
+
+e.g.
+```cmake
+    cmake_minimum_required (VERSION 3.22)
+    project (MiniTestApp)
+
+    add_executable(MiniTestApp miniTestAppMain.cpp miniFunctionToBeTested.cpp)
+```
+4. Save the file and add the new subdirectory to the top level CMakeLists.txt file (The one in the AudioDev directory)
+
+```cmake
+    add_subdirectory(tester/myFirstTest)
+```
+
+
+## and with JUCE specifics
 
 Lets start with a simple Example. We want to test the JUCE AudioBuffer Class in a simple Gain function (I know that AudioBuffer have this functionalty, its just for the demonstration). Our main.cpp would look like this without the JUCE specifics
 
@@ -107,7 +127,7 @@ For our example , put a new CMakeLists.txt in your new subfolder (e.g /AudioDev/
 Here is an example for the AudioBufferTest
 
 ```cmake
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.22)
 project(AudioBufferTest VERSION 0.1.0)
 
 juce_add_console_app(AudioBufferTest
@@ -117,7 +137,7 @@ juce_add_console_app(AudioBufferTest
 # include module headers directly, you probably don't need to call this.
 # juce_generate_juce_header(ConsoleAppExample)
 
-# Add the list of your necessary cpp files (Here its just Main.cpp)
+# Add the list of your necessary cpp files (Here its just main.cpp)
 target_sources(AudioBufferTest
     PRIVATE
         main.cpp)
@@ -150,7 +170,7 @@ Save the file, the new build environment is build.
 
 ## add the necessary module header files 
 
-The final step is to add the header files from the modules. Of course for real world development, you would start with this step.
+The final step is to add the header files from the necessary JUCE-modules to main.cpp. Of course in real world development, you would start with this step.
 
 ```cpp
 #include <iostream>
@@ -158,6 +178,6 @@ The final step is to add the header files from the modules. Of course for real w
 #include <juce_audio_basics/juce_audio_basics.h>
 ```
 
-Now you can use all the features from these two JUCE modules. Auto Completion should work fine.
+Now you can use all the features from these two JUCE modules. Auto completion should work fine.
 
 
