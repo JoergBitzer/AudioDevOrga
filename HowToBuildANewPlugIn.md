@@ -2,8 +2,8 @@
 (Second Read after installReadMe)
 ## Prerequisites
 * think about what you want to achieve (effect, instrument, GUI draft, Name)
+* (With Github, recommended) Create a new Repository and clone this repository into the directory AudioDev
 * (Without GitHub) Create a new subdirectory with the name of your new plugin
-* (With Github) Create a new Repository and clone this repository into the directory AudioDev
 
 ## Start (OldTemplate)
 * Copy *.cpp *.h and CMakeLists.txt from the Template (https://github.com/JoergBitzer/AudioDevTemplate) into the newly created directory
