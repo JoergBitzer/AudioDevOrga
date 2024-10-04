@@ -5,7 +5,7 @@
 * (With Github, recommended) Create a new Repository and clone this repository into the directory AudioDev
 * (Without GitHub) Create a new subdirectory with the name of your new plugin
 
-## Start (OldTemplate)
+## Start (OldTemplate not recommended)
 * Copy *.cpp *.h and CMakeLists.txt from the Template (https://github.com/JoergBitzer/AudioDevTemplate) into the newly created directory
 * rename all instances of Template***** in CMakeLists.txt, processor und Editor cpp and h file into your Pluginname (e.g. with (linux) sed -i 's/Template/YourPlugInName/g' *.* ). You can use Visual Studio Code for this as an alternative. (Only open the five files, and use Crtl+Shift+h (replace in files). The option search in open files only should be on.)
 * Change CMakeLists.txt file accordingly (set Name, kind of effect etc.)
@@ -14,7 +14,7 @@
 ## Start (AdvancedAudioTemplate)
 1. Create a new directory (better create a new repository in GitHub)
 2. (if Github): Checkout your new project
-3. copy template files (https://github.com/JoergBitzer/AdvancedAudioTemplate)
+3. copy template files after cloning the git repository (https://github.com/JoergBitzer/AdvancedAudioTemplate)
 4. rename all instances of "YourPluginName" in the Files with something appropriate 
     use a renaming-tool like   
 ```console    
@@ -39,5 +39,5 @@ for Windows: (https://stackoverflow.com/questions/17144355/how-can-i-replace-eve
 * Divide and Conquer (Build sub-problems) 
 * Think about testing (Do you need small test applications (small command line programs))
 * Make your feature list (What are the core features? How do you want to start?) Get a working system early on and redesign (if necessary) later. Don't be shy to throw away everything, if you find a better idea to implement things.
-* Build your plugin often and test every new feature extensively.
+* Build your plugin often and test every new feature extensively (Think about UnitTests).
 * Don't forget to commit often.
