@@ -22,6 +22,14 @@ Unfortunately the input blocksize of one audio block can vary from 1 Sample to M
 
 As usual: form follows function
 
+## Use the JUCE forum
+I found this useful for Choice Parameter
+https://forum.juce.com/t/mapping-a-audioparameterchoice-to-a-radio-button-group-sensecheck/18760
+
+and
+https://forum.juce.com/t/parameterchoicecombobox-implementation/16470/7
+
+
 # Development
 
 ## math problems 
