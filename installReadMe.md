@@ -18,8 +18,8 @@ This file will help you:
     3. Install Editor (Visual Studio Code works on all platforms)
 
 * Apple:
-    0. Install compiler (I would use Xcode)
-    1. Install git (if not installed)
+    0. Install compiler (I would use Xcode), install xcode-select --install
+    1. Install git (if not installed, will be installed by xcode-select)
     2. Install CMAKE (don't forget to add the path to terminal, e.g 
     ```console 
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
@@ -47,6 +47,8 @@ AudioDev
     | AudioDevOrga
     | JUCE
 
+copy the file CMakeLists.txt from AudioDevOrga to AudioDev
+
 ## (Linux only) install dependencies for Linux
 read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
 
@@ -56,7 +58,7 @@ read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencie
 * cpptools (basic language supports for C++ development)
 * CMake (CMake language supports)
 * CMake Tools (Advanced Integration for using CMake in VScode with GUI). Afterwards configure CMake (Crtl+Shift+P (Command Palette))
-* if you have access (student), add CoPilot from GitHub/Microsoft
+* Add CoPilot from GitHub/Microsoft
 * Apple: 
     CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
