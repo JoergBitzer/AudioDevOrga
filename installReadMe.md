@@ -47,7 +47,9 @@ AudioDev
     | AudioDevOrga
     | JUCE
 
-copy the file CMakeLists.txt from AudioDevOrga to AudioDev
+##  Use AudioDev Directory as SuperProject for all Audio Dev 
+
+Copy CMakeList.txt from this git project (AudioDevOrga) to the AudioDev Directory
 
 ## (Linux only) install dependencies for Linux
 read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
@@ -91,9 +93,7 @@ if you have time (I would recommend that, it takes 1-2h based on your system) bu
 
 * Decide if you want to use the provided templates for plug-in development. I will use it for all my plug-in developments. (However, some basic tutorials (videos) in German will be given without using the templates).
 
-##  Use AudioDev Directory as SuperProject for all Audio Dev 
 
-Copy CMakeList.txt from this git project to the AudioDev Directory
 
 ## Test the toolchain so far with an example
 
