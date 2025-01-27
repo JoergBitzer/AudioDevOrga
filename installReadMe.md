@@ -18,13 +18,17 @@ This file will help you:
     3. Install Editor (Visual Studio Code works on all platforms)
 
 * Apple:
-    0. Install compiler (I would use Xcode), install xcode-select --install
+    0. Install compiler (I would use Xcode from appstore), more important to intall the CLI-Tools in a terminal:
+    ```console 
+         install xcode-select --install
+    ```
     1. Install git (if not installed, will be installed by xcode-select)
     2. Install CMAKE (don't forget to add the path to terminal, e.g 
     ```console 
     sudo "/Applications/CMake.app/Contents/bin/cmake-gui" --install
     ```
     3. Install Editor (Visual Studio Code works on all platforms)
+    4. if asked for a c++ toolchain in the following steps, choose clang
 
 * Linux:
     0. Check installed compiler version (gcc -v should be > 9.0), if not installed,  install it
@@ -49,7 +53,7 @@ AudioDev
 
 ##  Use AudioDev Directory as SuperProject for all Audio Dev 
 
-Copy CMakeList.txt from this git project (AudioDevOrga) to the AudioDev Directory
+Copy CMakeList.txt from this git project (AudioDevOrga) to the AudioDev Directory (one above)
 
 ## (Linux only) install dependencies for Linux
 read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencies.md
@@ -61,8 +65,7 @@ read https://github.com/juce-framework/JUCE/blob/master/docs/Linux%20Dependencie
 * CMake (CMake language supports)
 * CMake Tools (Advanced Integration for using CMake in VScode with GUI). Afterwards configure CMake (Crtl+Shift+P (Command Palette))
 * Add CoPilot from GitHub/Microsoft
-* Apple: 
-    CodeLLDB (better debugger than built-in gdb) (for Apple only)
+* Apple: perhaps later:  CodeLLDB (better debugger than built-in gdb) (for Apple only)
 
 ## Test the toolchain so far
 
@@ -126,19 +129,6 @@ into AudioDev directory
 If no ``c_cpp_properties.json`` is in your .vscode hidden directory, use Crtl+Shift+p and search for c/c++ Edit configuration(JSON). This command creates ``c_cpp_properties.json``
 * change (if set otherwise) to ``c++17`` in cpp setting  ``cppStandard``
 
-* Look at for some tips (especially for Apple users)
-
-https://github.com/tomoyanonymous/juce_cmake_vscode_example und use the tips for MacOS
-
-* Apple: 
-Be careful if bash or zsh is your default console in VS (usually its is bash). change in settings for zsh
-
-After install Xcode and type xcode-select --install and in terminal. open ~/.zshrc and add export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)" in the last line of the file.
-
-* Apple (still unclear for me, it works now without, but I changed and rechanged a lot):
-At some point it seems cmake needs a special hint where to find the OSX specifics (which is at SDKROOT)
-You can set the CMAKE_OSX_??? = $SDKROOT
-
 * Linux:
     increase file watchers (if to small) (seems to be necessary for Ubuntu <= 18.04):
     1. test for the current setting 
@@ -163,7 +153,7 @@ You can set the CMAKE_OSX_??? = $SDKROOT
 Add in launch.json two debug entries:
 If you do not have a launch.json file: 
 
-1. load a cpp-file
+1. load a cpp-file (it does not matter which one)
 2. click on the debug menu (on the left) and click "create a launch.json file"
 3. change the file for two starting point for the debugger, one points to the the generated standaloe plugin, the second points to the AudioPluginHost (so you need to find your build in the build artifacts directories)
 
@@ -250,24 +240,32 @@ Tips: Look if the path is correct and change accordingly
     ]
 ```     
 
-* Apple (add just the .app for the AudioPluginHost)
+* Apple (I copied the PluginHost.app to another new subfolder tools)
 ```console
    "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
+       {
             "name": "PluginHost",
-            "program": "/Users/bitzer/AudioDev/JUCE/cmake-build/extras/AudioPluginHost/AudioPluginHost_artefacts/AudioPluginHost.app",
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
+            "type": "cppdbg",
             "request": "launch",
-            "name": "CMaKe Debug",
+            "program": "/Users/bitzer/AudioDev/tools/AudioPluginHost.app",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+        },       
+        {
+            "name": "C/C++: clang++ build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
         }
     ] 
 ```
