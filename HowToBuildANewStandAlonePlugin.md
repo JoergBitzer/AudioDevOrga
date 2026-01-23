@@ -49,7 +49,8 @@ for Windows: (https://stackoverflow.com/questions/17144355/how-can-i-replace-eve
 1. Change CMakeLists.txt file accordingly (set Name, kind of effect etc.)
 2. add or remove add_compile_definitions to your intention (Do you need a preset manager (default is yes), 
                                                             Do you need a midi-keyboard display (default is no)) 
-3.  Start coding your plugin (have the solution (math) or main idea solved before that, e.g. using python as a prototype language) 
+3. (optional): Build your empty plugin, to see if everything is allright. There should be zero errors and warnings after the build.                                                                 
+4.  Start coding your plugin (have the solution (math) or main idea solved before that, e.g. using python as a prototype language) 
 
 
 ## Coding
