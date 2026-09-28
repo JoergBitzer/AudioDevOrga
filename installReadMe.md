@@ -74,22 +74,22 @@ Build the Juce tools (From JUCE Readme.md). DemoRunner is a nice demo of several
 * Change to the JUCE path: cd /path/to/JUCE (e.g C:\AudioDev\Juce in Windows) (in a terminal window (to open a terminal in VSCODE: Crtl+Shift+p and enter 'new terminal', the command 'Create new terminal' should be available in the given list of commands))
 * Build Debug versions 
 ```console 
-    cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON 
-    cmake --build build --target DemoRunner 
-    cmake --build build --target AudioPluginHost
-    cmake --build build --target Projucer
+    cmake . -B cmake-build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON
+    cmake --build cmake-build --target DemoRunner 
+    cmake --build cmake-build --target AudioPluginHost
+    cmake --build cmake-build --target Projucer
 ```
 
 * or build Release versions
 ```console 
     cmake . -B build -DJUCE_BUILD_EXAMPLES=ON -DJUCE_BUILD_EXTRAS=ON -DCMAKE_BUILD_TYPE:STRING=Release
-    cmake --build build --target DemoRunner
-    cmake --build build --target AudioPluginHost
-    cmake --build build --target Projucer
+    cmake --build cmake-build --target DemoRunner
+    cmake --build cmake-build --target AudioPluginHost
+    cmake --build cmake-build --target Projucer
 ```
 if you have time (I would recommend that, it takes 1-2h based on your system) build all tools 
 ```console 
-    cmake --build build
+    cmake --build cmake-build
 ```
 
 * Decide if you want to use Projucer ==> if yes, you have to switch to other tutorials. Here, we will stay with CMake.
